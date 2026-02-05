@@ -6,39 +6,56 @@ title: Proust Mentions in Personal Canon
 <header>
   <h1>Proust Mentions</h1>
   <p class="subtitle">Every mention of Proust and <em>In Search of Lost Time</em> from the <a href="https://www.personalcanon.com">Personal Canon</a> newsletter.</p>
-  {% set totalMentions = 0 %}
-  {% set totalPosts = 0 %}
-  {% for url, post in mentions.posts %}
-    {% set totalPosts = totalPosts + 1 %}
-    {% set totalMentions = totalMentions + post.mentions.length %}
-  {% endfor %}
-  <p class="stats">{{ totalMentions }} mentions across {{ totalPosts }} posts</p>
 </header>
 
-<main>
+<div class="toolbar">
+  <input type="search" id="search" placeholder="Search mentions...">
+  <div class="view-toggle">
+    <button id="view-list" class="view-btn">All Mentions</button>
+    <button id="view-grouped" class="view-btn active">By Post</button>
+  </div>
+</div>
+
+{% set totalMentions = 0 %}
+{% set totalPosts = 0 %}
+{% for url, post in mentions.posts %}
+  {% set totalPosts = totalPosts + 1 %}
+  {% set totalMentions = totalMentions + post.mentions.length %}
+{% endfor %}
+<p class="stats" id="stats"><span id="visible-count">{{ totalMentions }}</span> mentions across <span id="post-count">{{ totalPosts }}</span> posts</p>
+
+<main id="mentions-container">
   {% for entry in mentions.posts | sortByDate %}
     {% set url = entry[0] %}
     {% set post = entry[1] %}
-    {% for mention in post.mentions %}
-      <article class="mention">
-        <div class="mention-header">
-          <h2 class="mention-title">
-            <a href="{{ post.url }}{% if mention.headingSlug %}#{{ mention.headingSlug }}{% endif %}">{{ post.title }}</a>
-          </h2>
-          <p class="mention-meta">
-            <time datetime="{{ post.pubDate }}">{{ post.pubDate | date("MMMM d, yyyy") }}</time>
-            {% if mention.nearestHeading %}
-              <span class="mention-section"> &middot; {{ mention.nearestHeading }}</span>
-            {% endif %}
-          </p>
-        </div>
-        <div class="mention-context">
-          {{ mention.context | highlightKeywords(mention.keywords) | safe }}
-        </div>
-      </article>
-    {% endfor %}
+    <section class="post-group" data-post-url="{{ post.url }}">
+      <h2 class="post-group-header">
+        <a href="{{ post.url }}">{{ post.title }}</a>
+        <span class="post-date">{{ post.pubDate | date("MMMM d, yyyy") }}</span>
+      </h2>
+      {% for mention in post.mentions %}
+        <article class="mention" data-context="{{ mention.context | striptags | lower }}">
+          <div class="mention-header">
+            <h3 class="mention-title">
+              <a href="{{ post.url }}{% if mention.headingSlug %}#{{ mention.headingSlug }}{% endif %}">{{ post.title }}</a>
+            </h3>
+            <p class="mention-meta">
+              <time datetime="{{ post.pubDate }}">{{ post.pubDate | date("MMMM d, yyyy") }}</time>
+              {% if mention.nearestHeading %}
+                <span class="mention-section"> &middot; {{ mention.nearestHeading }}</span>
+              {% endif %}
+            </p>
+          </div>
+          <div class="mention-context">
+            {{ mention.context | highlightKeywords(mention.keywords) | safe }}
+          </div>
+        </article>
+      {% endfor %}
+    </section>
   {% endfor %}
 </main>
+
+<div id="no-results" class="hidden">No mentions match your search.</div>
 
 <footer>
   <p>Last updated: {{ mentions.lastScanned | date("MMMM d, yyyy") }}</p>

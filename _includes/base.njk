@@ -121,9 +121,251 @@
       font-size: 0.85rem;
       color: var(--muted-color);
     }
+
+    /* Toolbar */
+    .toolbar {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .toolbar input[type="search"] {
+      flex: 1;
+      min-width: 200px;
+      padding: 0.5rem 0.75rem;
+      font-family: inherit;
+      font-size: 0.95rem;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+    }
+
+    .toolbar input[type="search"]:focus {
+      outline: none;
+      border-color: var(--link-color);
+    }
+
+    .view-toggle {
+      display: flex;
+      gap: 0;
+    }
+
+    .view-btn {
+      padding: 0.5rem 0.75rem;
+      font-family: inherit;
+      font-size: 0.85rem;
+      border: 1px solid var(--border-color);
+      background: var(--bg-color);
+      color: var(--muted-color);
+      cursor: pointer;
+    }
+
+    .view-btn:first-child {
+      border-radius: 4px 0 0 4px;
+    }
+
+    .view-btn:last-child {
+      border-radius: 0 4px 4px 0;
+      border-left: none;
+    }
+
+    .view-btn.active {
+      background: var(--text-color);
+      border-color: var(--text-color);
+      color: var(--bg-color);
+    }
+
+    .view-btn:hover:not(.active) {
+      border-color: var(--muted-color);
+    }
+
+    /* Post groups */
+    .post-group {
+      margin-bottom: 2rem;
+    }
+
+    .post-group-header {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .post-group-header a {
+      color: var(--text-color);
+      text-decoration: none;
+    }
+
+    .post-group-header a:hover {
+      color: var(--link-color);
+    }
+
+    .post-date {
+      font-size: 0.85rem;
+      font-weight: normal;
+      color: var(--muted-color);
+    }
+
+    /* List view - hide post group headers */
+    .list-view .post-group-header {
+      display: none;
+    }
+
+    .list-view .post-group {
+      margin-bottom: 0;
+    }
+
+    .list-view .mention-title {
+      display: block;
+    }
+
+    /* Grouped view - hide individual mention titles */
+    .grouped-view .mention-title {
+      display: none;
+    }
+
+    .grouped-view .mention-meta {
+      margin-top: 0;
+    }
+
+    /* Hidden states */
+    .hidden {
+      display: none !important;
+    }
+
+    #no-results {
+      text-align: center;
+      color: var(--muted-color);
+      padding: 2rem;
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
   {{ content | safe }}
+  <script>
+    (function() {
+      const searchInput = document.getElementById('search');
+      const viewListBtn = document.getElementById('view-list');
+      const viewGroupedBtn = document.getElementById('view-grouped');
+      const container = document.getElementById('mentions-container');
+      const noResults = document.getElementById('no-results');
+      const visibleCount = document.getElementById('visible-count');
+      const postCount = document.getElementById('post-count');
+
+      if (!container) return;
+
+      const mentions = container.querySelectorAll('.mention');
+      const postGroups = container.querySelectorAll('.post-group');
+      const totalMentions = mentions.length;
+
+      let currentView = 'grouped';
+      let searchQuery = '';
+      let debounceTimer;
+
+      // Initialize grouped view
+      container.classList.add('grouped-view');
+
+      function updateVisibility() {
+        const query = searchQuery.toLowerCase().trim();
+        let visibleMentions = 0;
+        let visiblePosts = 0;
+
+        postGroups.forEach(group => {
+          let groupHasVisible = false;
+          const groupMentions = group.querySelectorAll('.mention');
+
+          groupMentions.forEach(mention => {
+            const context = mention.getAttribute('data-context') || '';
+            const matches = !query || context.includes(query);
+
+            if (matches) {
+              mention.classList.remove('hidden');
+              visibleMentions++;
+              groupHasVisible = true;
+            } else {
+              mention.classList.add('hidden');
+            }
+          });
+
+          if (currentView === 'grouped') {
+            if (groupHasVisible) {
+              group.classList.remove('hidden');
+              visiblePosts++;
+            } else {
+              group.classList.add('hidden');
+            }
+          } else {
+            group.classList.remove('hidden');
+            if (groupHasVisible) visiblePosts++;
+          }
+        });
+
+        // Update stats
+        if (query) {
+          visibleCount.textContent = visibleMentions + ' of ' + totalMentions;
+        } else {
+          visibleCount.textContent = totalMentions;
+        }
+        postCount.textContent = visiblePosts;
+
+        // Show/hide no results message
+        if (visibleMentions === 0 && query) {
+          noResults.classList.remove('hidden');
+        } else {
+          noResults.classList.add('hidden');
+        }
+      }
+
+      function setView(view) {
+        currentView = view;
+
+        if (view === 'list') {
+          container.classList.remove('grouped-view');
+          container.classList.add('list-view');
+          viewListBtn.classList.add('active');
+          viewGroupedBtn.classList.remove('active');
+        } else {
+          container.classList.remove('list-view');
+          container.classList.add('grouped-view');
+          viewGroupedBtn.classList.add('active');
+          viewListBtn.classList.remove('active');
+        }
+
+        updateVisibility();
+      }
+
+      // Search handler with debounce
+      if (searchInput) {
+        searchInput.addEventListener('input', function() {
+          clearTimeout(debounceTimer);
+          debounceTimer = setTimeout(function() {
+            searchQuery = searchInput.value;
+            updateVisibility();
+          }, 150);
+        });
+      }
+
+      // View toggle handlers
+      if (viewListBtn) {
+        viewListBtn.addEventListener('click', function() {
+          setView('list');
+        });
+      }
+
+      if (viewGroupedBtn) {
+        viewGroupedBtn.addEventListener('click', function() {
+          setView('grouped');
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
