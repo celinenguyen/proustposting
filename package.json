@@ -6,6 +6,7 @@
   "scripts": {
     "scan": "node scripts/scan.js",
     "build": "eleventy",
+    "build:ghpages": "eleventy --pathprefix=/proustposting/",
     "dev": "eleventy --serve"
   },
   "keywords": [],
