@@ -58,6 +58,26 @@ async function fetchRSSFeed() {
 
 function findMentions(html, keywords) {
   const $ = cheerio.load(html);
+
+  // Fix Substack @mentions - extract display names from mention-wrap spans
+  $('span.mention-wrap').each((i, el) => {
+    const $span = $(el);
+    const dataAttrs = $span.attr('data-attrs');
+
+    if (dataAttrs) {
+      try {
+        const attrs = JSON.parse(dataAttrs);
+        if (attrs.name) {
+          // Replace empty span with @username
+          $span.text(`@${attrs.name}`);
+        }
+      } catch (e) {
+        // If JSON parsing fails, just leave the span as is
+        console.warn('Failed to parse mention data-attrs:', e.message);
+      }
+    }
+  });
+
   const mentionsByContext = new Map();
 
   // Text block elements we care about for context
