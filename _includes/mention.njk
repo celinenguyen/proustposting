@@ -1,0 +1,34 @@
+{# Mention article template
+   Expected variables:
+   - mention: the mention object with prevContext, mentionContext, nextContext, keywords, nearestHeading, headingSlug
+   - post: the post object with url, title, pubDate
+#}
+{% set searchText = ((mention.prevContext or '') + mention.mentionContext + (mention.nextContext or '')) | striptags | lower %}
+<article class="mention" data-context="{{ searchText }}">
+  <div class="mention-header">
+    <h3 class="mention-title">
+      <a href="{{ post.url }}{% if mention.headingSlug %}#{{ mention.headingSlug }}{% endif %}">{{ post.title }}</a>
+    </h3>
+    <p class="mention-meta">
+      <time datetime="{{ post.pubDate }}">{{ post.pubDate | date("MMMM d, yyyy") }}</time>
+      {% if mention.nearestHeading %}
+        <span class="mention-section"> &middot; {{ mention.nearestHeading }}</span>
+      {% endif %}
+    </p>
+  </div>
+  <div class="mention-context">
+    {% if mention.prevContext %}
+      <div class="context-fade-in">
+        {{ mention.prevContext | safe }}
+      </div>
+    {% endif %}
+    <div class="context-main">
+      {{ mention.mentionContext | highlightKeywords(mention.keywords) | safe }}
+    </div>
+    {% if mention.nextContext %}
+      <div class="context-fade-out">
+        {{ mention.nextContext | safe }}
+      </div>
+    {% endif %}
+  </div>
+</article>

@@ -1,0 +1,160 @@
+/* Post group styles */
+.post-group {
+  margin-bottom: 2rem;
+}
+
+.post-group-header {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.post-group-header a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.post-group-header a:hover {
+  color: var(--link-color);
+}
+
+.post-date {
+  font-size: 0.85rem;
+  font-weight: normal;
+  color: var(--muted-color);
+}
+
+/* Mention article styles */
+.mention {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.mention:last-child {
+  border-bottom: none;
+}
+
+.mention-header {
+  margin-bottom: 1rem;
+}
+
+.mention-title {
+  font-size: 1.2rem;
+  margin: 0 0 0.25rem;
+  font-weight: 600;
+}
+
+.mention-title a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.mention-title a:hover {
+  color: var(--link-color);
+}
+
+.mention-meta {
+  font-size: 0.85rem;
+  color: var(--muted-color);
+}
+
+.mention-section {
+  font-style: italic;
+}
+
+/* Mention context styles */
+.mention-context {
+  background: var(--context-bg);
+  padding: 1rem 1.25rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+.mention-context p {
+  margin: 0 0 1rem;
+}
+
+.mention-context p:last-child {
+  margin-bottom: 0;
+}
+
+.mention-context .footnote-anchor {
+  font-size: 0.7em;
+  vertical-align: super;
+  line-height: 0;
+  text-decoration: none;
+}
+
+.mention-context .footnote-anchor:hover {
+  text-decoration: underline;
+}
+
+/* Context fade effects */
+.context-fade-in,
+.context-main,
+.context-fade-out {
+  position: relative;
+}
+
+.context-fade-in + .context-main,
+.context-main + .context-fade-out {
+  margin-top: 1rem;
+}
+
+.context-fade-in::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--context-bg) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.context-fade-out::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 0%, var(--context-bg) 100%);
+  pointer-events: none;
+}
+
+/* Keyword highlighting */
+.mention-keyword {
+  background: var(--highlight-bg);
+  padding: 0.1em 0.2em;
+  border-radius: 2px;
+}
+
+/* View modes */
+.list-view .post-group-header {
+  display: none;
+}
+
+.list-view .post-group {
+  margin-bottom: 0;
+}
+
+.list-view .mention-title {
+  display: block;
+}
+
+.grouped-view .mention-title {
+  display: none;
+}
+
+.grouped-view .mention-meta {
+  margin-top: 0;
+}

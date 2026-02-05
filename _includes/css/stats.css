@@ -1,0 +1,13 @@
+/* Stats styles */
+.stats {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--muted-color);
+}
+
+#no-results {
+  text-align: center;
+  color: var(--muted-color);
+  padding: 2rem;
+  font-style: italic;
+}

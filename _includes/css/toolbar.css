@@ -1,0 +1,57 @@
+/* Toolbar styles */
+.toolbar {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.toolbar input[type="search"] {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.5rem 0.75rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+.toolbar input[type="search"]:focus {
+  outline: none;
+  border-color: var(--link-color);
+}
+
+.view-toggle {
+  display: flex;
+  gap: 0;
+}
+
+.view-btn {
+  padding: 0.5rem 0.75rem;
+  font-family: inherit;
+  font-size: 0.85rem;
+  border: 1px solid var(--border-color);
+  background: var(--bg-color);
+  color: var(--muted-color);
+  cursor: pointer;
+}
+
+.view-btn:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.view-btn:last-child {
+  border-radius: 0 4px 4px 0;
+  border-left: none;
+}
+
+.view-btn.active {
+  background: var(--text-color);
+  border-color: var(--text-color);
+  color: var(--bg-color);
+}
+
+.view-btn:hover:not(.active) {
+  border-color: var(--muted-color);
+}
