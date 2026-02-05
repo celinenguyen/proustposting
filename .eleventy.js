@@ -22,24 +22,32 @@ module.exports = function(eleventyConfig) {
 
     const $ = cheerio.load(html, { decodeEntities: false });
 
+    // Sort keywords by length (longest first) to avoid partial matches
+    const sortedKeywords = [...keywords].sort((a, b) => b.length - a.length);
+
     // Build regex for all keywords
-    const pattern = keywords.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
+    const pattern = sortedKeywords.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
     const regex = new RegExp(`(${pattern})`, 'gi');
 
-    // Walk all text nodes and apply highlighting
-    const highlightTextNodes = (node) => {
+    // Collect all text nodes first to avoid mutating while iterating
+    const textNodes = [];
+    const collectTextNodes = (node) => {
       if (node.type === 'text') {
-        const text = node.data;
-        if (regex.test(text)) {
-          const highlighted = text.replace(regex, '<mark class="mention-keyword">$1</mark>');
-          $(node).replaceWith(highlighted);
-        }
+        textNodes.push(node);
       } else if (node.children) {
-        node.children.forEach(child => highlightTextNodes(child));
+        node.children.forEach(child => collectTextNodes(child));
       }
     };
+    $('body').contents().each((i, node) => collectTextNodes(node));
 
-    $('body').contents().each((i, node) => highlightTextNodes(node));
+    // Process each text node
+    textNodes.forEach(node => {
+      const text = node.data;
+      const highlighted = text.replace(regex, '<mark class="mention-keyword">$1</mark>');
+      if (highlighted !== text) {
+        $(node).replaceWith(highlighted);
+      }
+    });
 
     return $('body').html();
   });

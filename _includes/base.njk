@@ -115,6 +115,40 @@
       text-decoration: underline;
     }
 
+    /* Context fade effects */
+    .context-fade-in,
+    .context-main,
+    .context-fade-out {
+      position: relative;
+    }
+
+    .context-fade-in + .context-main,
+    .context-main + .context-fade-out {
+      margin-top: 1rem;
+    }
+
+    .context-fade-in::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background: linear-gradient(to bottom, #fafafa 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .context-fade-out::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent 0%, #fafafa 100%);
+      pointer-events: none;
+    }
+
     .mention-keyword {
       background: #fff3cd;
       padding: 0.1em 0.2em;

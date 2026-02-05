@@ -60,11 +60,39 @@ function findMentions(html, keywords) {
   const $ = cheerio.load(html);
   const mentionsByContext = new Map();
 
+  // Text block elements we care about for context
+  const TEXT_BLOCKS = 'p, li, blockquote, h1, h2, h3, h4, h5, h6';
+
   // Get all text-containing elements
-  const textElements = $('p, li, blockquote, h1, h2, h3, h4, h5, h6');
+  const textElements = $(TEXT_BLOCKS);
+
+  // Track elements we've already processed to avoid duplicates from nesting
+  const processedElements = new Set();
 
   textElements.each((i, el) => {
     const $el = $(el);
+
+    // Skip if this element is nested inside another text block we've already processed
+    // (e.g., a <p> inside a <blockquote> that was already handled)
+    const isNestedInProcessed = $el.parents(TEXT_BLOCKS).toArray().some(parent =>
+      processedElements.has(parent)
+    );
+    if (isNestedInProcessed) return;
+
+    // Check if this element contains child text blocks with keywords
+    // If so, skip this element - let the children handle it
+    const childTextBlocks = $el.find(TEXT_BLOCKS);
+    if (childTextBlocks.length > 0) {
+      const childrenHaveKeyword = childTextBlocks.toArray().some(child => {
+        const childText = $(child).text();
+        return keywords.some(kw => new RegExp(kw, 'gi').test(childText));
+      });
+      if (childrenHaveKeyword) {
+        // Don't process this container - its children will be processed
+        return;
+      }
+    }
+
     const text = $el.text();
 
     // Collect all keywords found in this element
@@ -78,41 +106,52 @@ function findMentions(html, keywords) {
 
     if (foundKeywords.length === 0) return;
 
-    // Find nearest preceding heading
+    // Mark this element as processed
+    processedElements.add(el);
+
+    // Find the context anchor - the element at the "top level" for sibling lookup
+    // If we're inside a blockquote/li, use that for finding siblings
+    let $contextAnchor = $el;
+    const $parentBlock = $el.parent().closest(TEXT_BLOCKS);
+    if ($parentBlock.length > 0) {
+      $contextAnchor = $parentBlock;
+    }
+
+    // Find nearest preceding heading (look from context anchor level)
     let nearestHeading = null;
     let headingSlug = null;
 
-    const prevHeadings = $el.prevAll('h1, h2, h3, h4, h5, h6');
+    const prevHeadings = $contextAnchor.prevAll('h1, h2, h3, h4, h5, h6');
     if (prevHeadings.length > 0) {
       nearestHeading = prevHeadings.first().text().trim();
       headingSlug = slugify(nearestHeading);
     }
 
-    // Get context: current element plus siblings
-    let context = '';
-    const prev = $el.prev('p, li, blockquote');
-    const next = $el.next('p, li, blockquote');
+    // Get context: look for siblings of the context anchor
+    const prev = $contextAnchor.prev(TEXT_BLOCKS);
+    const next = $contextAnchor.next(TEXT_BLOCKS);
 
-    if (prev.length) {
-      context += $.html(prev);
-    }
-    context += $.html($el);
-    if (next.length) {
-      context += $.html(next);
-    }
+    const prevContext = prev.length ? $.html(prev) : null;
+    const mentionContext = $.html($contextAnchor);
+    const nextContext = next.length ? $.html(next) : null;
+
+    // Create a deduplication key from all context parts
+    const contextKey = (prevContext || '') + mentionContext + (nextContext || '');
 
     // Deduplicate by context - merge keywords if same context already exists
-    if (mentionsByContext.has(context)) {
-      const existing = mentionsByContext.get(context);
+    if (mentionsByContext.has(contextKey)) {
+      const existing = mentionsByContext.get(contextKey);
       for (const kw of foundKeywords) {
         if (!existing.keywords.includes(kw)) {
           existing.keywords.push(kw);
         }
       }
     } else {
-      mentionsByContext.set(context, {
+      mentionsByContext.set(contextKey, {
         keywords: foundKeywords,
-        context,
+        prevContext,
+        mentionContext,
+        nextContext,
         nearestHeading,
         headingSlug
       });

@@ -34,7 +34,8 @@ title: Proust Mentions in Personal Canon
         <span class="post-date">{{ post.pubDate | date("MMMM d, yyyy") }}</span>
       </h2>
       {% for mention in post.mentions %}
-        <article class="mention" data-context="{{ mention.context | striptags | lower }}">
+        {% set searchText = ((mention.prevContext or '') + mention.mentionContext + (mention.nextContext or '')) | striptags | lower %}
+        <article class="mention" data-context="{{ searchText }}">
           <div class="mention-header">
             <h3 class="mention-title">
               <a href="{{ post.url }}{% if mention.headingSlug %}#{{ mention.headingSlug }}{% endif %}">{{ post.title }}</a>
@@ -47,7 +48,19 @@ title: Proust Mentions in Personal Canon
             </p>
           </div>
           <div class="mention-context">
-            {{ mention.context | highlightKeywords(mention.keywords) | safe }}
+            {% if mention.prevContext %}
+              <div class="context-fade-in">
+                {{ mention.prevContext | safe }}
+              </div>
+            {% endif %}
+            <div class="context-main">
+              {{ mention.mentionContext | highlightKeywords(mention.keywords) | safe }}
+            </div>
+            {% if mention.nextContext %}
+              <div class="context-fade-out">
+                {{ mention.nextContext | safe }}
+              </div>
+            {% endif %}
           </div>
         </article>
       {% endfor %}
