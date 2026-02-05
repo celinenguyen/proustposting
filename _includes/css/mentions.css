@@ -4,6 +4,7 @@
 }
 
 .post-group-header {
+  font-family: 'Lora', Georgia, serif;
   font-size: 1.1rem;
   font-weight: 600;
   margin: 0 0 1rem;
@@ -47,6 +48,7 @@
 }
 
 .mention-title {
+  font-family: 'Lora', Georgia, serif;
   font-size: 1.2rem;
   margin: 0 0 0.25rem;
   font-weight: 600;
@@ -67,11 +69,13 @@
 }
 
 .mention-section {
+  font-family: 'Lora', Georgia, serif;
   font-style: italic;
 }
 
 /* Mention context styles */
 .mention-context {
+  font-family: 'Lora', Georgia, serif;
   background: var(--context-bg);
   padding: 1rem 1.25rem;
   border-radius: 4px;
