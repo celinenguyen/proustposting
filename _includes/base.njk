@@ -19,6 +19,30 @@
   {{ content | safe }}
   <script>
     (function() {
+      // Sticky header scroll effect
+      const header = document.querySelector('header');
+      if (header) {
+        let lastScrollY = 0;
+        let ticking = false;
+
+        function updateHeader() {
+          if (window.scrollY > 10) {
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+          ticking = false;
+        }
+
+        window.addEventListener('scroll', function() {
+          lastScrollY = window.scrollY;
+          if (!ticking) {
+            window.requestAnimationFrame(updateHeader);
+            ticking = true;
+          }
+        }, { passive: true });
+      }
+
       const searchInput = document.getElementById('search');
       const viewListBtn = document.getElementById('view-list');
       const viewGroupedBtn = document.getElementById('view-grouped');

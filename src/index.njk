@@ -3,26 +3,29 @@ layout: base.njk
 title: Proust Mentions in Personal Canon
 ---
 
-<header>
-  <h1>Proust Mentions</h1>
-  <p class="subtitle">Every mention of Proust and <em>In Search of Lost Time</em> from the <a href="https://www.personalcanon.com">Personal Canon</a> newsletter.</p>
-</header>
-
-<div class="toolbar">
-  <input type="search" id="search" placeholder="Search mentions...">
-  <div class="view-toggle">
-    <button id="view-list" class="view-btn">All Mentions</button>
-    <button id="view-grouped" class="view-btn active">By Post</button>
-  </div>
-</div>
-
 {% set totalMentions = 0 %}
 {% set totalPosts = 0 %}
 {% for url, post in mentions.posts %}
   {% set totalPosts = totalPosts + 1 %}
   {% set totalMentions = totalMentions + post.mentions.length %}
 {% endfor %}
-<p class="stats" id="stats"><span id="visible-count">{{ totalMentions }}</span> mentions across <span id="post-count">{{ totalPosts }}</span> posts</p>
+
+<header>
+  <div class="header-content">
+    <div class="header-text">
+      <h1>Proust Mentions</h1>
+      <p class="subtitle">Every mention of Proust and <em>In Search of Lost Time</em> from <a href="https://www.personalcanon.com">Personal Canon</a>.</p>
+    </div>
+    <p class="stats" id="stats"><span id="visible-count">{{ totalMentions }}</span> mentions across <span id="post-count">{{ totalPosts }}</span> posts</p>
+  </div>
+  <div class="toolbar">
+    <input type="search" id="search" placeholder="Search mentions...">
+    <div class="view-toggle">
+      <button id="view-list" class="view-btn">All Mentions</button>
+      <button id="view-grouped" class="view-btn active">By Post</button>
+    </div>
+  </div>
+</header>
 
 <main id="mentions-container">
   {% for entry in mentions.posts | sortByDate %}
@@ -41,10 +44,12 @@ title: Proust Mentions in Personal Canon
           <img class="post-group-image" src="{{ post.imageUrl }}" alt="" loading="lazy">
         {% endif %}
       </a>
-      {% for mention in post.mentions %}
-        {% set view = "grouped" %}
-        {% include "mention.njk" %}
-      {% endfor %}
+      <div class="mentions-grid">
+        {% for mention in post.mentions %}
+          {% set view = "grouped" %}
+          {% include "mention.njk" %}
+        {% endfor %}
+      </div>
     </section>
   {% endfor %}
 </main>
