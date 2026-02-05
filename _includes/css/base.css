@@ -1,11 +1,16 @@
 /* Base styles - variables, resets, typography */
 :root {
-  --text-color: #1a1a1a;
-  --bg-color: #fff;
-  --link-color: #c25400;
+  /* Font stacks */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: 'Lora', Georgia, 'Times New Roman', serif;
+  
+  /* Colors */
+  --text-color: #363737;
+  --bg-color: #f8fcff; /* --color_theme_bg_web */
+  --link-color: #57adde; /* --color_theme_bg_pop */
   --border-color: #e5e5e5;
-  --muted-color: #666;
-  --context-bg: #fafafa;
+  --muted-color: #757575; /* --cover_print_secondary */
+  --context-bg: #fff;
   --highlight-bg: #fff3cd;
 }
 
@@ -14,7 +19,7 @@
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: var(--font-sans);
   line-height: 1.6;
   color: var(--text-color);
   background: var(--bg-color);
@@ -25,6 +30,11 @@ body {
 
 a {
   color: var(--link-color);
+}
+
+strong {
+  font-family: var(--font-serif);
+  font-weight: 500;
 }
 
 /* Utility classes */

@@ -1,20 +1,33 @@
 {# Mention article template
    Expected variables:
-   - mention: the mention object with prevContext, mentionContext, nextContext, keywords, nearestHeading, headingSlug
+   - mention: the mention object with prevContext, mentionContext, nextContext, keywords, nearestHeading
    - post: the post object with url, title, pubDate
+   - view: "list" (all mentions) or "grouped" (by post) - defaults to "list"
 #}
 {% set searchText = ((mention.prevContext or '') + mention.mentionContext + (mention.nextContext or '')) | striptags | lower %}
 <article class="mention" data-context="{{ searchText }}">
   <div class="mention-header">
-    <h3 class="mention-title">
-      <a href="{{ post.url }}{% if mention.headingSlug %}#{{ mention.headingSlug }}{% endif %}">{{ post.title }}</a>
-    </h3>
-    <p class="mention-meta">
-      <time datetime="{{ post.pubDate }}">{{ post.pubDate | date("MMMM d, yyyy") }}</time>
-      {% if mention.nearestHeading %}
-        <span class="mention-section"> &middot; {{ mention.nearestHeading }}</span>
-      {% endif %}
-    </p>
+    {# In list view (all mentions): show post title, section, and date #}
+    {# In grouped view (by post): only show section heading #}
+    {% if view != "grouped" %}
+      <h3 class="mention-title">
+        <a href="{{ post.url }}">{{ post.title }}</a>
+      </h3>
+    {% endif %}
+    {% if mention.nearestHeading %}
+      <p class="mention-section">
+        {% if view == "grouped" %}
+          <a href="{{ post.url }}">{{ mention.nearestHeading }}</a>
+        {% else %}
+          {{ mention.nearestHeading }}
+        {% endif %}
+      </p>
+    {% endif %}
+    {% if view != "grouped" %}
+      <p class="mention-meta">
+        <time datetime="{{ post.pubDate }}">{{ post.pubDate | date("MMMM d, yyyy") }}</time>
+      </p>
+    {% endif %}
   </div>
   <div class="mention-context">
     {% if mention.prevContext %}

@@ -34,6 +34,7 @@ title: Proust Mentions in Personal Canon
         <span class="post-date">{{ post.pubDate | date("MMMM d, yyyy") }}</span>
       </h2>
       {% for mention in post.mentions %}
+        {% set view = "grouped" %}
         {% include "mention.njk" %}
       {% endfor %}
     </section>

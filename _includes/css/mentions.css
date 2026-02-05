@@ -4,17 +4,12 @@
 }
 
 .post-group-header {
-  font-family: 'Lora', Georgia, serif;
-  font-size: 1.1rem;
+  font-family: var(--font-sans);
+  font-size: 1.8rem;
+  letter-spacing: -0.015em;
   font-weight: 600;
   margin: 0 0 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--border-color);
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 0.5rem;
 }
 
 .post-group-header a {
@@ -36,7 +31,6 @@
 .mention {
   margin-bottom: 2.5rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid var(--border-color);
 }
 
 .mention:last-child {
@@ -48,7 +42,7 @@
 }
 
 .mention-title {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 1.2rem;
   margin: 0 0 0.25rem;
   font-weight: 600;
@@ -69,17 +63,21 @@
 }
 
 .mention-section {
-  font-family: 'Lora', Georgia, serif;
-  font-style: italic;
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
 }
 
 /* Mention context styles */
 .mention-context {
-  font-family: 'Lora', Georgia, serif;
+  font-family: var(--font-serif);
+  letter-spacing: -0.005em;
   background: var(--context-bg);
-  padding: 1rem 1.25rem;
-  border-radius: 4px;
+  padding: 1.4rem 2rem;
+  border-radius: 1px;
   font-size: 0.95rem;
+  line-height: 1.8;
+  border: 1px solid color-mix(in srgb, var(--bg-color) 90%, black 5%);
 }
 
 .mention-context p {
@@ -117,7 +115,7 @@
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
+  left: -1rem;
   right: 0;
   height: 100%;
   background: linear-gradient(to bottom, var(--context-bg) 0%, transparent 100%);

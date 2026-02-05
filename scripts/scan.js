@@ -11,14 +11,6 @@ const MENTIONS_PATH = path.join(__dirname, '..', '_data', 'mentions.json');
 
 const KEYWORDS = ['Proust', 'In Search of Lost Time'];
 
-function slugify(text) {
-  return text
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .trim();
-}
-
 function hashContent(content) {
   return crypto.createHash('md5').update(content).digest('hex');
 }
@@ -147,12 +139,10 @@ function findMentions(html, keywords) {
 
     // Find nearest preceding heading (look from context anchor level)
     let nearestHeading = null;
-    let headingSlug = null;
 
     const prevHeadings = $contextAnchor.prevAll('h1, h2, h3, h4, h5, h6');
     if (prevHeadings.length > 0) {
       nearestHeading = prevHeadings.first().text().trim();
-      headingSlug = slugify(nearestHeading);
     }
 
     // Get context: look for siblings of the context anchor
@@ -180,8 +170,7 @@ function findMentions(html, keywords) {
         prevContext,
         mentionContext,
         nextContext,
-        nearestHeading,
-        headingSlug
+        nearestHeading
       });
     }
   });
