@@ -1,0 +1,46 @@
+---
+layout: base.njk
+title: Proust Mentions in Personal Canon
+---
+
+<header>
+  <h1>Proust Mentions</h1>
+  <p class="subtitle">Every mention of Proust and <em>In Search of Lost Time</em> from the <a href="https://www.personalcanon.com">Personal Canon</a> newsletter.</p>
+  {% set totalMentions = 0 %}
+  {% set totalPosts = 0 %}
+  {% for url, post in mentions.posts %}
+    {% set totalPosts = totalPosts + 1 %}
+    {% set totalMentions = totalMentions + post.mentions.length %}
+  {% endfor %}
+  <p class="stats">{{ totalMentions }} mentions across {{ totalPosts }} posts</p>
+</header>
+
+<main>
+  {% for entry in mentions.posts | sortByDate %}
+    {% set url = entry[0] %}
+    {% set post = entry[1] %}
+    {% for mention in post.mentions %}
+      <article class="mention">
+        <div class="mention-header">
+          <h2 class="mention-title">
+            <a href="{{ post.url }}{% if mention.headingSlug %}#{{ mention.headingSlug }}{% endif %}">{{ post.title }}</a>
+          </h2>
+          <p class="mention-meta">
+            <time datetime="{{ post.pubDate }}">{{ post.pubDate | date("MMMM d, yyyy") }}</time>
+            {% if mention.nearestHeading %}
+              <span class="mention-section"> &middot; {{ mention.nearestHeading }}</span>
+            {% endif %}
+          </p>
+        </div>
+        <div class="mention-context">
+          {{ mention.context | highlightKeyword(mention.keyword) | safe }}
+        </div>
+      </article>
+    {% endfor %}
+  {% endfor %}
+</main>
+
+<footer>
+  <p>Last updated: {{ mentions.lastScanned | date("MMMM d, yyyy") }}</p>
+  <p>Data sourced from the <a href="https://www.personalcanon.com/feed">Personal Canon RSS feed</a>.</p>
+</footer>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <style>
+    :root {
+      --text-color: #1a1a1a;
+      --bg-color: #fff;
+      --link-color: #c25400;
+      --border-color: #e5e5e5;
+      --muted-color: #666;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background: var(--bg-color);
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    header {
+      margin-bottom: 3rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin: 0 0 0.5rem;
+      font-weight: 600;
+    }
+
+    .subtitle {
+      color: var(--muted-color);
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    .stats {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: var(--muted-color);
+    }
+
+    .mention {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .mention:last-child {
+      border-bottom: none;
+    }
+
+    .mention-header {
+      margin-bottom: 1rem;
+    }
+
+    .mention-title {
+      font-size: 1.2rem;
+      margin: 0 0 0.25rem;
+      font-weight: 600;
+    }
+
+    .mention-title a {
+      color: var(--text-color);
+      text-decoration: none;
+    }
+
+    .mention-title a:hover {
+      color: var(--link-color);
+    }
+
+    .mention-meta {
+      font-size: 0.85rem;
+      color: var(--muted-color);
+    }
+
+    .mention-section {
+      font-style: italic;
+    }
+
+    .mention-context {
+      background: #fafafa;
+      padding: 1rem 1.25rem;
+      border-radius: 4px;
+      font-size: 0.95rem;
+    }
+
+    .mention-context p {
+      margin: 0 0 1rem;
+    }
+
+    .mention-context p:last-child {
+      margin-bottom: 0;
+    }
+
+    .mention-keyword {
+      background: #fff3cd;
+      padding: 0.1em 0.2em;
+      border-radius: 2px;
+    }
+
+    a {
+      color: var(--link-color);
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.85rem;
+      color: var(--muted-color);
+    }
+  </style>
+</head>
+<body>
+  {{ content | safe }}
+</body>
+</html>
