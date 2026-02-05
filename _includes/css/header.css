@@ -1,0 +1,27 @@
+/* Header styles */
+header {
+  margin-bottom: 3rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+
+.subtitle {
+  color: var(--muted-color);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Footer styles */
+footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.85rem;
+  color: var(--muted-color);
+}

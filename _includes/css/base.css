@@ -1,0 +1,33 @@
+/* Base styles - variables, resets, typography */
+:root {
+  --text-color: #1a1a1a;
+  --bg-color: #fff;
+  --link-color: #c25400;
+  --border-color: #e5e5e5;
+  --muted-color: #666;
+  --context-bg: #fafafa;
+  --highlight-bg: #fff3cd;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background: var(--bg-color);
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+a {
+  color: var(--link-color);
+}
+
+/* Utility classes */
+.hidden {
+  display: none !important;
+}
