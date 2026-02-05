@@ -10,8 +10,7 @@
   <style>
     {% include "css/base.css" %}
     {% include "css/header.css" %}
-    {% include "css/toolbar.css" %}
-    {% include "css/stats.css" %}
+    {% include "css/post-group.css" %}
     {% include "css/mentions.css" %}
   </style>
 </head>
@@ -44,8 +43,6 @@
       }
 
       const searchInput = document.getElementById('search');
-      const viewListBtn = document.getElementById('view-list');
-      const viewGroupedBtn = document.getElementById('view-grouped');
       const container = document.getElementById('mentions-container');
       const noResults = document.getElementById('no-results');
       const visibleCount = document.getElementById('visible-count');
@@ -57,12 +54,8 @@
       const postGroups = container.querySelectorAll('.post-group');
       const totalMentions = mentions.length;
 
-      let currentView = 'grouped';
       let searchQuery = '';
       let debounceTimer;
-
-      // Initialize grouped view
-      container.classList.add('grouped-view');
 
       function updateVisibility() {
         const query = searchQuery.toLowerCase().trim();
@@ -86,16 +79,11 @@
             }
           });
 
-          if (currentView === 'grouped') {
-            if (groupHasVisible) {
-              group.classList.remove('hidden');
-              visiblePosts++;
-            } else {
-              group.classList.add('hidden');
-            }
-          } else {
+          if (groupHasVisible) {
             group.classList.remove('hidden');
-            if (groupHasVisible) visiblePosts++;
+            visiblePosts++;
+          } else {
+            group.classList.add('hidden');
           }
         });
 
@@ -115,24 +103,6 @@
         }
       }
 
-      function setView(view) {
-        currentView = view;
-
-        if (view === 'list') {
-          container.classList.remove('grouped-view');
-          container.classList.add('list-view');
-          viewListBtn.classList.add('active');
-          viewGroupedBtn.classList.remove('active');
-        } else {
-          container.classList.remove('list-view');
-          container.classList.add('grouped-view');
-          viewGroupedBtn.classList.add('active');
-          viewListBtn.classList.remove('active');
-        }
-
-        updateVisibility();
-      }
-
       // Search handler with debounce
       if (searchInput) {
         searchInput.addEventListener('input', function() {
@@ -141,19 +111,6 @@
             searchQuery = searchInput.value;
             updateVisibility();
           }, 150);
-        });
-      }
-
-      // View toggle handlers
-      if (viewListBtn) {
-        viewListBtn.addEventListener('click', function() {
-          setView('list');
-        });
-      }
-
-      if (viewGroupedBtn) {
-        viewGroupedBtn.addEventListener('click', function() {
-          setView('grouped');
         });
       }
     })();
