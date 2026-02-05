@@ -1,4 +1,5 @@
 const { DateTime } = require("luxon");
+const cheerio = require("cheerio");
 
 module.exports = function(eleventyConfig) {
   // Date filter - handles various date formats
@@ -15,11 +16,32 @@ module.exports = function(eleventyConfig) {
     return dt.isValid ? dt.toFormat(format) : "";
   });
 
-  // Highlight keyword in HTML content
-  eleventyConfig.addFilter("highlightKeyword", (html, keyword) => {
-    if (!html || !keyword) return html;
-    const regex = new RegExp(`(${keyword})`, 'gi');
-    return html.replace(regex, '<mark class="mention-keyword">$1</mark>');
+  // Highlight keywords in HTML content (text nodes only, not attributes)
+  eleventyConfig.addFilter("highlightKeywords", (html, keywords) => {
+    if (!html || !keywords || keywords.length === 0) return html;
+
+    const $ = cheerio.load(html, { decodeEntities: false });
+
+    // Build regex for all keywords
+    const pattern = keywords.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
+    const regex = new RegExp(`(${pattern})`, 'gi');
+
+    // Walk all text nodes and apply highlighting
+    const highlightTextNodes = (node) => {
+      if (node.type === 'text') {
+        const text = node.data;
+        if (regex.test(text)) {
+          const highlighted = text.replace(regex, '<mark class="mention-keyword">$1</mark>');
+          $(node).replaceWith(highlighted);
+        }
+      } else if (node.children) {
+        node.children.forEach(child => highlightTextNodes(child));
+      }
+    };
+
+    $('body').contents().each((i, node) => highlightTextNodes(node));
+
+    return $('body').html();
   });
 
   // Sort posts by date (returns array of [url, post] pairs)

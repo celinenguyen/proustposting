@@ -33,7 +33,7 @@ title: Proust Mentions in Personal Canon
           </p>
         </div>
         <div class="mention-context">
-          {{ mention.context | highlightKeyword(mention.keyword) | safe }}
+          {{ mention.context | highlightKeywords(mention.keywords) | safe }}
         </div>
       </article>
     {% endfor %}

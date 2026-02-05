@@ -58,7 +58,7 @@ async function fetchRSSFeed() {
 
 function findMentions(html, keywords) {
   const $ = cheerio.load(html);
-  const mentions = [];
+  const mentionsByContext = new Map();
 
   // Get all text-containing elements
   const textElements = $('p, li, blockquote, h1, h2, h3, h4, h5, h6');
@@ -67,46 +67,59 @@ function findMentions(html, keywords) {
     const $el = $(el);
     const text = $el.text();
 
+    // Collect all keywords found in this element
+    const foundKeywords = [];
     for (const keyword of keywords) {
       const regex = new RegExp(keyword, 'gi');
       if (regex.test(text)) {
-        // Find nearest preceding heading
-        let nearestHeading = null;
-        let headingSlug = null;
-
-        const prevHeadings = $el.prevAll('h1, h2, h3, h4, h5, h6');
-        if (prevHeadings.length > 0) {
-          nearestHeading = prevHeadings.first().text().trim();
-          headingSlug = slugify(nearestHeading);
-        }
-
-        // Get context: current element plus siblings
-        let context = '';
-        const prev = $el.prev('p, li, blockquote');
-        const next = $el.next('p, li, blockquote');
-
-        if (prev.length) {
-          context += $.html(prev);
-        }
-        context += $.html($el);
-        if (next.length) {
-          context += $.html(next);
-        }
-
-        mentions.push({
-          keyword,
-          context,
-          nearestHeading,
-          headingSlug
-        });
-
-        // Only record one mention per keyword per element
-        break;
+        foundKeywords.push(keyword);
       }
+    }
+
+    if (foundKeywords.length === 0) return;
+
+    // Find nearest preceding heading
+    let nearestHeading = null;
+    let headingSlug = null;
+
+    const prevHeadings = $el.prevAll('h1, h2, h3, h4, h5, h6');
+    if (prevHeadings.length > 0) {
+      nearestHeading = prevHeadings.first().text().trim();
+      headingSlug = slugify(nearestHeading);
+    }
+
+    // Get context: current element plus siblings
+    let context = '';
+    const prev = $el.prev('p, li, blockquote');
+    const next = $el.next('p, li, blockquote');
+
+    if (prev.length) {
+      context += $.html(prev);
+    }
+    context += $.html($el);
+    if (next.length) {
+      context += $.html(next);
+    }
+
+    // Deduplicate by context - merge keywords if same context already exists
+    if (mentionsByContext.has(context)) {
+      const existing = mentionsByContext.get(context);
+      for (const kw of foundKeywords) {
+        if (!existing.keywords.includes(kw)) {
+          existing.keywords.push(kw);
+        }
+      }
+    } else {
+      mentionsByContext.set(context, {
+        keywords: foundKeywords,
+        context,
+        nearestHeading,
+        headingSlug
+      });
     }
   });
 
-  return mentions;
+  return Array.from(mentionsByContext.values());
 }
 
 async function loadExistingMentions() {
