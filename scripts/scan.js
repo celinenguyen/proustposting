@@ -45,7 +45,13 @@ async function fetchRSSFeed() {
 
   const feed = await parser.parseURL(RSS_URL);
   console.log(`Found ${feed.items.length} items in RSS feed`);
-  return feed.items;
+
+  // Extract description and image URL from each item
+  return feed.items.map(item => ({
+    ...item,
+    description: item.contentSnippet || item.content || '',
+    imageUrl: item.enclosure?.url || null
+  }));
 }
 
 function findMentions(html, keywords) {
@@ -232,8 +238,9 @@ async function main() {
 
     // Check if we need to rescan
     const existingPost = existingData.posts[url];
-    if (existingPost && existingPost.contentHash === contentHash) {
-      // Content unchanged, keep existing data
+    const hasMissingFields = existingPost && (!existingPost.description || !existingPost.imageUrl);
+    if (existingPost && existingPost.contentHash === contentHash && !hasMissingFields) {
+      // Content unchanged and has all fields, keep existing data
       newData.posts[url] = existingPost;
       unchangedPosts++;
       totalMentions += existingPost.mentions.length;
@@ -246,6 +253,8 @@ async function main() {
     if (mentions.length > 0) {
       newData.posts[url] = {
         title: rssItem.title,
+        description: rssItem.description,
+        imageUrl: rssItem.imageUrl,
         url: url,
         pubDate: rssItem.pubDate || rssItem.isoDate,
         lastmod: sitemapInfo.lastmod,

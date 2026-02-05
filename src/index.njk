@@ -29,10 +29,18 @@ title: Proust Mentions in Personal Canon
     {% set url = entry[0] %}
     {% set post = entry[1] %}
     <section class="post-group" data-post-url="{{ post.url }}">
-      <h2 class="post-group-header">
-        <a href="{{ post.url }}">{{ post.title }}</a>
-        <span class="post-date">{{ post.pubDate | date("MMMM d, yyyy") }}</span>
-      </h2>
+      <a href="{{ post.url }}" class="post-group-header">
+        <div class="post-group-text">
+          <h2 class="post-group-title">{{ post.title }}</h2>
+          {% if post.description %}
+            <p class="post-group-description">{{ post.description }}</p>
+          {% endif %}
+          <span class="post-date">{{ post.pubDate | date("MMMM d, yyyy") }}</span>
+        </div>
+        {% if post.imageUrl %}
+          <img class="post-group-image" src="{{ post.imageUrl }}" alt="" loading="lazy">
+        {% endif %}
+      </a>
       {% for mention in post.mentions %}
         {% set view = "grouped" %}
         {% include "mention.njk" %}
