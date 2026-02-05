@@ -59,7 +59,7 @@ async function fetchRSSFeed() {
 function findMentions(html, keywords) {
   const $ = cheerio.load(html);
 
-  // Fix Substack @mentions - extract display names from mention-wrap spans
+  // Fix Substack @mentions - extract display names and create links
   $('span.mention-wrap').each((i, el) => {
     const $span = $(el);
     const dataAttrs = $span.attr('data-attrs');
@@ -68,8 +68,16 @@ function findMentions(html, keywords) {
       try {
         const attrs = JSON.parse(dataAttrs);
         if (attrs.name) {
-          // Replace empty span with @username
-          $span.text(`@${attrs.name}`);
+          // Determine the profile URL
+          let profileUrl = attrs.url;
+          if (!profileUrl) {
+            // If no URL provided, construct Substack profile URL
+            profileUrl = `https://substack.com/@${attrs.name}`;
+          }
+
+          // Replace span with a link
+          const $link = $(`<a href="${profileUrl}" class="user-mention">@${attrs.name}</a>`);
+          $span.replaceWith($link);
         }
       } catch (e) {
         // If JSON parsing fails, just leave the span as is
