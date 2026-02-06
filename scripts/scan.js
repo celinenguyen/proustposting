@@ -11,12 +11,17 @@ const MENTIONS_PATH = path.join(__dirname, '..', '_data', 'mentions.json');
 
 const KEYWORDS = ['Proust', 'In Search of Lost Time'];
 
-function slugify(text) {
-  return text
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .trim();
+function transformImageUrl(url) {
+  if (!url) return null;
+  // Replace Substack's $s_!...! thumbnail parameter with explicit 300px dimensions
+  if (url.includes('substackcdn.com/image/fetch/')) {
+    return url.replace(/\$s_![^!]+!,/, 'w_300,h_300,c_fill,');
+  }
+  // Wrap direct S3 URLs in the Substack CDN with sizing
+  if (url.includes('substack-post-media.s3.amazonaws.com')) {
+    return `https://substackcdn.com/image/fetch/w_300,h_300,c_fill,f_auto,q_auto:good,fl_progressive:steep/${encodeURIComponent(url)}`;
+  }
+  return url;
 }
 
 function hashContent(content) {
@@ -53,7 +58,13 @@ async function fetchRSSFeed() {
 
   const feed = await parser.parseURL(RSS_URL);
   console.log(`Found ${feed.items.length} items in RSS feed`);
-  return feed.items;
+
+  // Extract description and image URL from each item
+  return feed.items.map(item => ({
+    ...item,
+    description: item.contentSnippet || item.content || '',
+    imageUrl: item.enclosure?.url || null
+  }));
 }
 
 function findMentions(html, keywords) {
@@ -147,12 +158,10 @@ function findMentions(html, keywords) {
 
     // Find nearest preceding heading (look from context anchor level)
     let nearestHeading = null;
-    let headingSlug = null;
 
     const prevHeadings = $contextAnchor.prevAll('h1, h2, h3, h4, h5, h6');
     if (prevHeadings.length > 0) {
       nearestHeading = prevHeadings.first().text().trim();
-      headingSlug = slugify(nearestHeading);
     }
 
     // Get context: look for siblings of the context anchor
@@ -180,8 +189,7 @@ function findMentions(html, keywords) {
         prevContext,
         mentionContext,
         nextContext,
-        nearestHeading,
-        headingSlug
+        nearestHeading
       });
     }
   });
@@ -243,8 +251,9 @@ async function main() {
 
     // Check if we need to rescan
     const existingPost = existingData.posts[url];
-    if (existingPost && existingPost.contentHash === contentHash) {
-      // Content unchanged, keep existing data
+    const hasMissingFields = existingPost && (!existingPost.description || !existingPost.imageUrl);
+    if (existingPost && existingPost.contentHash === contentHash && !hasMissingFields) {
+      // Content unchanged and has all fields, keep existing data
       newData.posts[url] = existingPost;
       unchangedPosts++;
       totalMentions += existingPost.mentions.length;
@@ -257,6 +266,8 @@ async function main() {
     if (mentions.length > 0) {
       newData.posts[url] = {
         title: rssItem.title,
+        description: rssItem.description,
+        imageUrl: rssItem.imageUrl,
         url: url,
         pubDate: rssItem.pubDate || rssItem.isoDate,
         lastmod: sitemapInfo.lastmod,
@@ -274,6 +285,11 @@ async function main() {
         console.log(`New: "${rssItem.title}" (${mentions.length} mentions)`);
       }
     }
+  }
+
+  // Transform image URLs to 300px versions
+  for (const url of Object.keys(newData.posts)) {
+    newData.posts[url].imageUrl = transformImageUrl(newData.posts[url].imageUrl);
   }
 
   // Write results

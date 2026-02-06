@@ -1,0 +1,128 @@
+/* Main content area */
+
+/* Post group styles */
+.post-group {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 2px solid var(--stroke-color);
+}
+
+.post-group-summary, 
+.post-group-mentions {
+  display: grid;
+  grid-template-columns: 160px 6fr 1fr;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* Summary row: header + count side by side */
+.post-group-summary {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.post-group-summary:hover {
+  background-color: #eef3f6;
+}
+
+.post-group-header {
+  display: flex;
+  gap: 1.5rem;
+  align-items: stretch;
+  text-decoration: none;
+  color: inherit;
+}
+
+.post-group-title-link {
+  text-decoration: none;
+
+  &:hover .post-group-title {
+    text-decoration: underline;
+  }
+}
+
+.post-group-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-left: 2px solid var(--stroke-color);
+}
+
+.post-group-text {
+  padding: 1rem 1.6rem;
+}
+
+.mentions-count {
+  padding: 1rem;
+}
+
+.post-group-title,
+.mentions-count {
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  letter-spacing: -0.015em;
+  font-weight: 600;
+}
+
+.post-group-title {
+  margin: 0 0 0.2rem;
+  color: var(--text-color);
+  transition: color 0.2s ease;
+  font-weight: 500;
+}
+
+.post-group-description {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-color);
+  -webkit-line-clamp: 2;
+  margin: 0;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.post-group-image {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 1px;
+  flex-shrink: 0;
+}
+
+.post-date {
+  font-size: 0.8rem;
+  letter-spacing: -0.01rem;
+  font-weight: normal;
+  letter-spacing: 0.02em;
+}
+
+/* Mentions count label (right side of summary row) */
+.mentions-count {
+  padding-right: 2rem;
+  height: 100%;
+  text-align: right;
+}
+
+/* Mentions list: hidden by default, right column when expanded */
+.post-group-mentions .mentions-list {
+  display: none;
+}
+
+.post-group.expanded .post-group-mentions {
+  border-top: 2px solid var(--stroke-color);
+
+  .mentions-list {
+    grid-column: 2 / span 1;
+    display: flex;
+    flex-direction: column;
+    border-left: 2px solid var(--stroke-color);
+    border-right: 2px solid var(--stroke-color);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  /* TODO ensure this becomes one column on mobile */
+}

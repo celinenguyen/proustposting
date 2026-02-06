@@ -1,27 +1,90 @@
 /* Header styles */
 header {
-  margin-bottom: 3rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  color: var(--text-color-dark);
+  background-color: var(--bg-color-dark);
+  border-bottom: 1.5px solid var(--stroke-color);
+  padding: 1rem 2rem;
+  transition: box-shadow 0.2s ease, padding 0.2s ease;
+}
+
+/* Add shadow when scrolled */
+header.scrolled {
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.header-text {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 h1 {
-  font-size: 2rem;
-  margin: 0 0 0.5rem;
-  font-weight: 600;
-}
-
-.subtitle {
-  color: var(--muted-color);
-  font-size: 1.1rem;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  font-size: var(--font-size-medium);
+  letter-spacing: 0.06em;
   margin: 0;
+  font-weight: 400;
+
+  a {
+    color: var(--text-color-dark);
+    font-weight: 700;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
-/* Footer styles */
-footer {
-  margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border-color);
-  font-size: 0.85rem;
+/* .subtitle {
   color: var(--muted-color);
-}
+  font-size: 0.95rem;
+  margin: 0;
+} */
+
+/* Toolbar styles */
+/* .toolbar {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+} */
+
+/* .toolbar input[type="search"] {
+  flex: 1;
+  min-width: 200px;
+  max-width: 400px;
+  padding: 0.5rem 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: #fff;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+} */
+
+/* .toolbar input[type="search"]:focus {
+  outline: none;
+  border-color: var(--link-color);
+  box-shadow: 0 0 0 3px rgba(87, 173, 222, 0.15);
+} */
+
+/* #no-results {
+  text-align: center;
+  color: var(--muted-color);
+  padding: 3rem 2rem;
+  font-style: italic;
+} */

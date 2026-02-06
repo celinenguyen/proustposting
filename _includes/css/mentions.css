@@ -1,89 +1,42 @@
-/* Post group styles */
-.post-group {
-  margin-bottom: 2rem;
-}
-
-.post-group-header {
-  font-family: 'Lora', Georgia, serif;
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 0 0 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--border-color);
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.post-group-header a {
-  color: var(--text-color);
-  text-decoration: none;
-}
-
-.post-group-header a:hover {
-  color: var(--link-color);
-}
-
-.post-date {
-  font-size: 0.85rem;
-  font-weight: normal;
-  color: var(--muted-color);
-}
-
 /* Mention article styles */
 .mention {
-  margin-bottom: 2.5rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid var(--border-color);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 2px solid var(--stroke-color);
+  padding: 1rem 1.6rem;
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .mention:last-child {
+  margin-bottom: none;
   border-bottom: none;
 }
 
-.mention-header {
-  margin-bottom: 1rem;
-}
-
-.mention-title {
-  font-family: 'Lora', Georgia, serif;
-  font-size: 1.2rem;
-  margin: 0 0 0.25rem;
-  font-weight: 600;
-}
-
-.mention-title a {
+.mention-section a {
   color: var(--text-color);
   text-decoration: none;
+  transition: color 0.15s ease;
 }
 
-.mention-title a:hover {
+.mention-section a:hover {
   color: var(--link-color);
-}
-
-.mention-meta {
-  font-size: 0.85rem;
-  color: var(--muted-color);
-}
-
-.mention-section {
-  font-family: 'Lora', Georgia, serif;
-  font-style: italic;
 }
 
 /* Mention context styles */
 .mention-context {
-  font-family: 'Lora', Georgia, serif;
-  background: var(--context-bg);
-  padding: 1rem 1.25rem;
-  border-radius: 4px;
-  font-size: 0.95rem;
+  font-family: var(--font-serif);
+  letter-spacing: -0.005em;
+  font-size: var(--font-size-text);
+  line-height: var(--line-height-text);
+  flex: 1;
 }
 
 .mention-context p {
-  margin: 0 0 1rem;
+  margin: 0 0 0.85rem;
 }
 
 .mention-context p:last-child {
@@ -91,7 +44,7 @@
 }
 
 .mention-context .footnote-anchor {
-  font-size: 0.7em;
+  font-size: 0.8em;
   vertical-align: super;
   line-height: 0;
   text-decoration: none;
@@ -102,7 +55,7 @@
 }
 
 /* Context fade effects */
-.context-fade-in,
+/* .context-fade-in,
 .context-main,
 .context-fade-out {
   position: relative;
@@ -110,66 +63,40 @@
 
 .context-fade-in + .context-main,
 .context-main + .context-fade-out {
-  margin-top: 1rem;
-}
+  margin-top: 0.85rem;
+} */
 
-.context-fade-in::before {
+/* .context-fade-in::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
+  left: -1rem;
   right: 0;
   height: 100%;
-  background: linear-gradient(to bottom, var(--context-bg) 0%, transparent 100%);
+  background: linear-gradient(to bottom, var(--bg-color) 0%, transparent 100%);
   pointer-events: none;
-}
+} */
 
-.context-fade-out::after {
+/* .context-fade-out::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   height: 100%;
-  background: linear-gradient(to bottom, transparent 0%, var(--context-bg) 100%);
+  background: linear-gradient(to bottom, transparent 0%, var(--bg-color) 100%);
   pointer-events: none;
-}
+} */
 
 /* Keyword highlighting */
 .mention-keyword {
   background: var(--highlight-bg);
   padding: 0.1em 0.2em;
-  border-radius: 2px;
+  border-radius: 1px;
 }
 
 /* User mentions (@username links) */
 .mention-context .user-mention {
   color: var(--link-color);
-  text-decoration: none;
   font-weight: 500;
-}
-
-.mention-context .user-mention:hover {
-  text-decoration: underline;
-}
-
-/* View modes */
-.list-view .post-group-header {
-  display: none;
-}
-
-.list-view .post-group {
-  margin-bottom: 0;
-}
-
-.list-view .mention-title {
-  display: block;
-}
-
-.grouped-view .mention-title {
-  display: none;
-}
-
-.grouped-view .mention-meta {
-  margin-top: 0;
 }

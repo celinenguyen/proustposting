@@ -6,23 +6,53 @@
   <title>{{ title }}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <style>
     {% include "css/base.css" %}
     {% include "css/header.css" %}
-    {% include "css/toolbar.css" %}
-    {% include "css/stats.css" %}
+    {% include "css/post-group.css" %}
     {% include "css/mentions.css" %}
+    {% include "css/footer.css" %}
   </style>
 </head>
 <body>
   {{ content | safe }}
   <script>
     (function() {
+      // Sticky header scroll effect
+      const header = document.querySelector('header');
+      if (header) {
+        let lastScrollY = 0;
+        let ticking = false;
+
+        function updateHeader() {
+          if (window.scrollY > 10) {
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+          ticking = false;
+        }
+
+        window.addEventListener('scroll', function() {
+          lastScrollY = window.scrollY;
+          if (!ticking) {
+            window.requestAnimationFrame(updateHeader);
+            ticking = true;
+          }
+        }, { passive: true });
+      }
+
+      // Toggle post-group expansion on summary click
+      document.querySelectorAll('.post-group-summary').forEach(function(summary) {
+        summary.addEventListener('click', function(e) {
+          if (e.target.closest('a')) return;
+          summary.closest('.post-group').classList.toggle('expanded');
+        });
+      });
+
       const searchInput = document.getElementById('search');
-      const viewListBtn = document.getElementById('view-list');
-      const viewGroupedBtn = document.getElementById('view-grouped');
-      const container = document.getElementById('mentions-container');
+      const container = document.getElementById('mentions-list');
       const noResults = document.getElementById('no-results');
       const visibleCount = document.getElementById('visible-count');
       const postCount = document.getElementById('post-count');
@@ -33,12 +63,8 @@
       const postGroups = container.querySelectorAll('.post-group');
       const totalMentions = mentions.length;
 
-      let currentView = 'grouped';
       let searchQuery = '';
       let debounceTimer;
-
-      // Initialize grouped view
-      container.classList.add('grouped-view');
 
       function updateVisibility() {
         const query = searchQuery.toLowerCase().trim();
@@ -62,18 +88,23 @@
             }
           });
 
-          if (currentView === 'grouped') {
-            if (groupHasVisible) {
-              group.classList.remove('hidden');
-              visiblePosts++;
-            } else {
-              group.classList.add('hidden');
-            }
-          } else {
+          if (groupHasVisible) {
             group.classList.remove('hidden');
-            if (groupHasVisible) visiblePosts++;
+            if (query) {
+              group.classList.add('expanded');
+            }
+            visiblePosts++;
+          } else {
+            group.classList.add('hidden');
           }
         });
+
+        // Collapse all when search is cleared
+        if (!query) {
+          postGroups.forEach(group => {
+            group.classList.remove('expanded');
+          });
+        }
 
         // Update stats
         if (query) {
@@ -91,24 +122,6 @@
         }
       }
 
-      function setView(view) {
-        currentView = view;
-
-        if (view === 'list') {
-          container.classList.remove('grouped-view');
-          container.classList.add('list-view');
-          viewListBtn.classList.add('active');
-          viewGroupedBtn.classList.remove('active');
-        } else {
-          container.classList.remove('list-view');
-          container.classList.add('grouped-view');
-          viewGroupedBtn.classList.add('active');
-          viewListBtn.classList.remove('active');
-        }
-
-        updateVisibility();
-      }
-
       // Search handler with debounce
       if (searchInput) {
         searchInput.addEventListener('input', function() {
@@ -117,19 +130,6 @@
             searchQuery = searchInput.value;
             updateVisibility();
           }, 150);
-        });
-      }
-
-      // View toggle handlers
-      if (viewListBtn) {
-        viewListBtn.addEventListener('click', function() {
-          setView('list');
-        });
-      }
-
-      if (viewGroupedBtn) {
-        viewGroupedBtn.addEventListener('click', function() {
-          setView('grouped');
         });
       }
     })();
