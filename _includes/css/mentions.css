@@ -1,9 +1,15 @@
 /* Mention article styles */
 .mention {
   margin: 0;
-  padding: 0;
+  padding: 1rem 0;
   display: flex;
   flex-direction: column;
+  margin-bottom: 1rem;
+  border-top: 2px solid var(--stroke-color);
+}
+
+.mention:last-child {
+  margin-bottom: none;
 }
 
 .mention-header {
@@ -31,18 +37,9 @@
 .mention-context {
   font-family: var(--font-serif);
   letter-spacing: -0.005em;
-  background: var(--context-bg);
-  padding: 1.25rem 1.5rem;
-  border-radius: 4px;
   font-size: 0.9rem;
   line-height: 1.75;
-  border: 1px solid color-mix(in srgb, var(--bg-color) 90%, black 5%);
   flex: 1;
-  transition: box-shadow 0.2s ease;
-}
-
-.mention-context:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .mention-context p {
@@ -83,7 +80,7 @@
   left: -1rem;
   right: 0;
   height: 100%;
-  background: linear-gradient(to bottom, var(--context-bg) 0%, transparent 100%);
+  background: linear-gradient(to bottom, var(--bg-color) 0%, transparent 100%);
   pointer-events: none;
 }
 
@@ -94,7 +91,7 @@
   left: 0;
   right: 0;
   height: 100%;
-  background: linear-gradient(to bottom, transparent 0%, var(--context-bg) 100%);
+  background: linear-gradient(to bottom, transparent 0%, var(--bg-color) 100%);
   pointer-events: none;
 }
 
@@ -102,7 +99,7 @@
 .mention-keyword {
   background: var(--highlight-bg);
   padding: 0.1em 0.2em;
-  border-radius: 2px;
+  border-radius: 1px;
 }
 
 /* User mentions (@username links) */

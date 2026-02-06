@@ -1,17 +1,22 @@
 <section class="post-group" data-post-url="{{ post.url }}">
-  <a href="{{ post.url }}" class="post-group-header">
-    <div class="post-group-text">
-      <h2 class="post-group-title">{{ post.title }}</h2>
-      {% if post.description %}
-        <p class="post-group-description">{{ post.description }}</p>
+  <div class="post-group-summary">
+    <a href="{{ post.url }}" class="post-group-header">
+      {% if post.imageUrl %}
+        <img class="post-group-image" src="{{ post.imageUrl }}" alt="" loading="lazy">
       {% endif %}
-      <span class="post-date">{{ post.pubDate | date("MMMM d, yyyy") }}</span>
-    </div>
-    {% if post.imageUrl %}
-      <img class="post-group-image" src="{{ post.imageUrl }}" alt="" loading="lazy">
-    {% endif %}
-  </a>
-  <div class="mentions-grid">
+      <div class="post-group-text">
+        <div class="post-group-title-descrip">
+          <h2 class="post-group-title">{{ post.title }}</h2>
+          {% if post.description %}
+            <p class="post-group-description">{{ post.description }}</p>
+          {% endif %}
+        </div>
+        <span class="post-date">{{ post.pubDate | date("MMMM d, yyyy") }}</span>
+      </div>
+    </a>
+    <p class="mentions-count">{{ post.mentions.length }}</p>
+  </div>
+  <div class="mentions-list">
     {% for mention in post.mentions %}
       {% include "mention.njk" %}
     {% endfor %}

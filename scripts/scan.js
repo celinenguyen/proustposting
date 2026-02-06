@@ -11,6 +11,19 @@ const MENTIONS_PATH = path.join(__dirname, '..', '_data', 'mentions.json');
 
 const KEYWORDS = ['Proust', 'In Search of Lost Time'];
 
+function transformImageUrl(url) {
+  if (!url) return null;
+  // Replace Substack's $s_!...! thumbnail parameter with explicit 300px dimensions
+  if (url.includes('substackcdn.com/image/fetch/')) {
+    return url.replace(/\$s_![^!]+!,/, 'w_300,h_300,c_fill,');
+  }
+  // Wrap direct S3 URLs in the Substack CDN with sizing
+  if (url.includes('substack-post-media.s3.amazonaws.com')) {
+    return `https://substackcdn.com/image/fetch/w_300,h_300,c_fill,f_auto,q_auto:good,fl_progressive:steep/${encodeURIComponent(url)}`;
+  }
+  return url;
+}
+
 function hashContent(content) {
   return crypto.createHash('md5').update(content).digest('hex');
 }
@@ -272,6 +285,11 @@ async function main() {
         console.log(`New: "${rssItem.title}" (${mentions.length} mentions)`);
       }
     }
+  }
+
+  // Transform image URLs to 300px versions
+  for (const url of Object.keys(newData.posts)) {
+    newData.posts[url].imageUrl = transformImageUrl(newData.posts[url].imageUrl);
   }
 
   // Write results

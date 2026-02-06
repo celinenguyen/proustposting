@@ -12,6 +12,7 @@
     {% include "css/header.css" %}
     {% include "css/post-group.css" %}
     {% include "css/mentions.css" %}
+    {% include "css/footer.css" %}
   </style>
 </head>
 <body>
@@ -41,6 +42,14 @@
           }
         }, { passive: true });
       }
+
+      // Toggle post-group expansion on summary click
+      document.querySelectorAll('.post-group-summary').forEach(function(summary) {
+        summary.addEventListener('click', function(e) {
+          if (e.target.closest('a')) return;
+          summary.closest('.post-group').classList.toggle('expanded');
+        });
+      });
 
       const searchInput = document.getElementById('search');
       const container = document.getElementById('mentions-container');
@@ -81,11 +90,21 @@
 
           if (groupHasVisible) {
             group.classList.remove('hidden');
+            if (query) {
+              group.classList.add('expanded');
+            }
             visiblePosts++;
           } else {
             group.classList.add('hidden');
           }
         });
+
+        // Collapse all when search is cleared
+        if (!query) {
+          postGroups.forEach(group => {
+            group.classList.remove('expanded');
+          });
+        }
 
         // Update stats
         if (query) {

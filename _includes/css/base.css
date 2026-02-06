@@ -5,10 +5,10 @@
   --font-serif: 'Lora', Georgia, 'Times New Roman', serif;
   
   /* Colors */
-  --text-color: #363737;
-  --bg-color: #f8fcff; /* --color_theme_bg_web */
+  --text-color: #000; /* Substack is #36373 */
+  --bg-color: #fff; /* --color_theme_bg_we is #f8fcff */
   --link-color: #57adde; /* --color_theme_bg_pop */
-  --border-color: #e5e5e5;
+  --stroke-color: #000;
   --muted-color: #757575; /* --cover_print_secondary */
   --context-bg: #fff;
   --highlight-bg: #fff3cd;
