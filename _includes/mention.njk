@@ -1,25 +1,25 @@
 {% set searchText = ((mention.prevContext or '') + mention.mentionContext + (mention.nextContext or '')) | striptags | lower %}
 <article class="mention" data-context="{{ searchText }}">
-  <div class="mention-header">
-    {# {% if mention.nearestHeading %}
+  {# <div class="mention-header">
+    {% if mention.nearestHeading %}
       <p class="mention-section">
         <a href="{{ post.url }}">{{ mention.nearestHeading }}</a>
       </p>
-    {% endif %} #}
-  </div>
+    {% endif %}
+  </div> #}
   <div class="mention-context">
-    {% if mention.prevContext %}
+    {# {% if mention.prevContext %}
       <div class="context-fade-in">
         {{ mention.prevContext | safe }}
       </div>
-    {% endif %}
+    {% endif %} #}
     <div class="context-main">
       {{ mention.mentionContext | highlightKeywords(mention.keywords) | safe }}
     </div>
-    {% if mention.nextContext %}
+    {# {% if mention.nextContext %}
       <div class="context-fade-out">
         {{ mention.nextContext | safe }}
       </div>
-    {% endif %}
+    {% endif %} #}
   </div>
 </article>

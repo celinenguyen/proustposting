@@ -1,24 +1,40 @@
 .site-footer {
   position: sticky;
   bottom: 0;
-  background: #000;
-  color: #fff;
-  padding: 0.75rem 2rem;
+  background: var(--bg-color-dark);
+  color: var(--text-color-dark);
   font-family: var(--font-sans);
   font-size: 0.8rem;
   letter-spacing: 0.01em;
   z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 2rem;
 }
 
-.site-footer p {
-  margin: 0;
+.site-footer .text,
+.site-footer .separator {
+  display: inline-block;
 }
 
-.site-footer a {
+.site-footer .text {
+  text-transform: uppercase;
+  letter-spacing: 0.08rem;
+}
+
+.site-footer .text a {
   color: #fff;
-  text-decoration: underline;
+  text-transform: none;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
-.site-footer a:hover {
-  text-decoration: none;
+.site-footer .separator::after {
+  margin: 0 1rem;
+  content: '•';
+  font-size: var(--font-size-xl);
 }

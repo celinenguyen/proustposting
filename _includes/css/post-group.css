@@ -2,17 +2,21 @@
 
 /* Post group styles */
 .post-group {
-  display: grid;
-  grid-template-columns: 2fr 3fr;
+  display: flex;
+  flex-direction: column;
   border-bottom: 2px solid var(--stroke-color);
+}
+
+.post-group-summary, 
+.post-group-mentions {
+  display: grid;
+  grid-template-columns: 160px 6fr 1fr;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 /* Summary row: header + count side by side */
 .post-group-summary {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: 5fr 1fr;
-  align-items: center;
   cursor: pointer;
   transition: background-color 0.15s ease;
 }
@@ -29,8 +33,12 @@
   color: inherit;
 }
 
-.post-group-header:hover .post-group-title {
-  text-decoration: underline;
+.post-group-title-link {
+  text-decoration: none;
+
+  &:hover .post-group-title {
+    text-decoration: underline;
+  }
 }
 
 .post-group-text {
@@ -39,12 +47,15 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-left: 2px solid var(--stroke-color);
 }
 
-.post-group-text,
+.post-group-text {
+  padding: 1rem 1.6rem;
+}
+
 .mentions-count {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding: 1rem;
 }
 
 .post-group-title,
@@ -78,7 +89,6 @@
   object-fit: cover;
   border-radius: 1px;
   flex-shrink: 0;
-  border-right: 2px solid var(--stroke-color);
 }
 
 .post-date {
@@ -96,50 +106,23 @@
 }
 
 /* Mentions list: hidden by default, right column when expanded */
-.mentions-list {
-  border-top: 2px solid #000;
-  grid-column: 2;
+.post-group-mentions .mentions-list {
   display: none;
-  flex-direction: column;
-  gap: 1.5rem;
-  padding: 1rem;
 }
 
-.post-group.expanded .mentions-list {
-  display: flex;
+.post-group.expanded .post-group-mentions {
+  border-top: 2px solid var(--stroke-color);
+
+  .mentions-list {
+    grid-column: 2 / span 1;
+    display: flex;
+    flex-direction: column;
+    border-left: 2px solid var(--stroke-color);
+    border-right: 2px solid var(--stroke-color);
+  }
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .post-group {
-    grid-template-columns: 1fr;
-  }
-
-  .post-group-summary {
-    grid-template-columns: 1fr;
-  }
-
-  .post-group-header {
-    padding: 1rem;
-    gap: 1rem;
-  }
-
-  .post-group-image {
-    width: 80px;
-    height: 80px;
-  }
-
-  .post-group-title {
-    font-size: 1.1rem;
-  }
-
-  .post-group-description {
-    font-size: 0.9rem;
-    -webkit-line-clamp: 2;
-  }
-
-  .mentions-list {
-    grid-column: 1;
-    gap: 1.25rem;
-  }
+  /* TODO ensure this becomes one column on mobile */
 }

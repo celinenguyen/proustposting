@@ -1,26 +1,19 @@
 /* Mention article styles */
 .mention {
   margin: 0;
-  padding: 1rem 0;
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
-  border-top: 2px solid var(--stroke-color);
+  border-bottom: 2px solid var(--stroke-color);
+  padding: 1rem 1.6rem;
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .mention:last-child {
   margin-bottom: none;
-}
-
-.mention-header {
-  margin-bottom: 0.75rem;
-}
-
-.mention-section {
-  font-family: var(--font-sans);
-  font-size: 0.95rem;
-  letter-spacing: -0.01em;
-  margin: 0;
+  border-bottom: none;
 }
 
 .mention-section a {
@@ -37,8 +30,8 @@
 .mention-context {
   font-family: var(--font-serif);
   letter-spacing: -0.005em;
-  font-size: 0.9rem;
-  line-height: 1.75;
+  font-size: var(--font-size-text);
+  line-height: var(--line-height-text);
   flex: 1;
 }
 
@@ -51,7 +44,7 @@
 }
 
 .mention-context .footnote-anchor {
-  font-size: 0.7em;
+  font-size: 0.8em;
   vertical-align: super;
   line-height: 0;
   text-decoration: none;
@@ -62,7 +55,7 @@
 }
 
 /* Context fade effects */
-.context-fade-in,
+/* .context-fade-in,
 .context-main,
 .context-fade-out {
   position: relative;
@@ -71,9 +64,9 @@
 .context-fade-in + .context-main,
 .context-main + .context-fade-out {
   margin-top: 0.85rem;
-}
+} */
 
-.context-fade-in::before {
+/* .context-fade-in::before {
   content: '';
   position: absolute;
   top: 0;
@@ -82,9 +75,9 @@
   height: 100%;
   background: linear-gradient(to bottom, var(--bg-color) 0%, transparent 100%);
   pointer-events: none;
-}
+} */
 
-.context-fade-out::after {
+/* .context-fade-out::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -93,7 +86,7 @@
   height: 100%;
   background: linear-gradient(to bottom, transparent 0%, var(--bg-color) 100%);
   pointer-events: none;
-}
+} */
 
 /* Keyword highlighting */
 .mention-keyword {
@@ -105,10 +98,5 @@
 /* User mentions (@username links) */
 .mention-context .user-mention {
   color: var(--link-color);
-  text-decoration: none;
   font-weight: 500;
-}
-
-.mention-context .user-mention:hover {
-  text-decoration: underline;
 }

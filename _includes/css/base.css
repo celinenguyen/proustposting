@@ -1,26 +1,41 @@
 /* Base styles - variables, resets, typography */
 :root {
   /* Font stacks */
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
   --font-serif: 'Lora', Georgia, 'Times New Roman', serif;
   
   /* Colors */
-  --text-color: #000; /* Substack is #36373 */
-  --bg-color: #fff; /* --color_theme_bg_we is #f8fcff */
-  --link-color: #57adde; /* --color_theme_bg_pop */
+  --text-color: #000;
+  --text-color-dark: #fff;
+  --bg-color: #fff;
+  --bg-color-dark: #000;
+  --bg-color-hover: #f8fcff;
+  --link-color: #000;
   --stroke-color: #000;
-  --muted-color: #757575; /* --cover_print_secondary */
-  --context-bg: #fff;
+  --muted-color: #757575;
   --highlight-bg: #fff3cd;
+
+  /* Font sizes */
+  --font-size-small: 0.8rem;
+  --font-size-medium: 1rem;
+  --font-size-large: 1.4rem;
+  --font-size-text: 1.05rem;
+  --font-size-xl: 1.6rem;
+  --line-height: 1.6;
+  --line-height-text: 1.8;
 }
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  font-size: 14px; /* set rem from 16px → 14px */
+}
+
 body {
   font-family: var(--font-sans);
-  line-height: 1.6;
+  line-height: var(--line-height);
   color: var(--text-color);
   background: var(--bg-color);
   margin: 0;
