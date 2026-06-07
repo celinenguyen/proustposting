@@ -1,5 +1,5 @@
 {
-  "lastScanned": "2026-05-31T12:37:26.705Z",
+  "lastScanned": "2026-06-07T12:40:55.353Z",
   "posts": {
     "https://www.personalcanon.com/p/everything-i-read-in-february-march-2026": {
       "title": "everything i read in february & march 2026",
@@ -262,7 +262,7 @@
       "url": "https://www.personalcanon.com/p/writing-is-an-inherently-dignified",
       "pubDate": "Mon, 29 Dec 2025 07:43:48 GMT",
       "lastmod": "2025-12-29",
-      "contentHash": "fb00409641f79006bdfacfffe776cf6e",
+      "contentHash": "a51e8d6ce46e2a4b99817edfdba33bc0",
       "mentions": [
         {
           "keywords": [
@@ -339,7 +339,7 @@
       "url": "https://www.personalcanon.com/p/ten-thousand-takes-on-tech-culture",
       "pubDate": "Tue, 18 Nov 2025 22:17:02 GMT",
       "lastmod": "2025-11-23",
-      "contentHash": "33152b1e1be6f8ad77810fa3fafa6251",
+      "contentHash": "1d15241a8767b0ca36fe630529755a09",
       "mentions": [
         {
           "keywords": [
@@ -359,7 +359,7 @@
       "url": "https://www.personalcanon.com/p/everything-i-read-in-june-2025",
       "pubDate": "Wed, 02 Jul 2025 00:30:39 GMT",
       "lastmod": "2025-07-02",
-      "contentHash": "bf901fd0d09618b24812e53d38c5e2c1",
+      "contentHash": "5a4adbff59f4f2d097dd3edacbc16653",
       "mentions": [
         {
           "keywords": [
@@ -737,27 +737,6 @@
           "mentionContext": "<blockquote><p>Stettheimer’s deliberate simplification of drawing, her repetitive figure style, and her relentlessly additive, crowded compositions can at first evoke “outsider art.” <strong>But there are two types of outsider art, one made from below and one from above</strong>. There is the outsider who is, at first, indifferent to the possibility that money might be made from art, and then <strong>there is the outsider who needs to make no money from her art…Stettheimer, like Proust, her beloved literary hero, enjoyed the detachment provided by wealth</strong>, the luxury—shared by Edith Wharton, Gerald Murphy, and Cole Porter—of making what she wanted.</p></blockquote>",
           "nextContext": "<p>If you want to read more about Stettheimer, I also loved Johanna Fateman’s <a href=\"https://4columns.org/fateman-johanna/florine-stettheimer-a-biography\">review of a Stettheimer biography</a> for <em>4Columns.</em></p>",
           "nearestHeading": null
-        }
-      ]
-    },
-    "https://www.personalcanon.com/p/how-to-begin": {
-      "title": "how to begin",
-      "description": "on copying, technique and taste ✦ plus 6 close readings of great essay intros",
-      "imageUrl": "https://substackcdn.com/image/fetch/w_300,h_300,c_fill,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5048b30f-1051-4a5b-9c36-a70fdadfa67d_1361x1991.jpeg",
-      "url": "https://www.personalcanon.com/p/how-to-begin",
-      "pubDate": "Sun, 26 Jan 2025 16:07:26 GMT",
-      "lastmod": "2025-01-28",
-      "contentHash": "162d93743e47ddcff70f92b13ae88f3f",
-      "mentions": [
-        {
-          "keywords": [
-            "Proust",
-            "In Search of Lost Time"
-          ],
-          "prevContext": "<blockquote><p>There was a long period of time, almost a year, during which I never looked in a mirror. It wasn't easy, for I'd never suspected just how omnipresent are our own images. I began by merely avoiding mirrors, but by the end of the year I found myself with an acute knowledge of the reflected image, its numerous tricks and wiles, how it can spring up at any moment: a glass tabletop, a well-polished door handle, a darkened window, a pair of sunglasses, a restaurant's otherwise magnificent brass-plated coffee machine sitting innocently by the cash register. </p><p>At the time, I had just moved, alone, to Scotland and was surviving on the dole, as Britain's social security benefits are called. I didn't know anyone and had no idea how I was going to live, yet I went anyway because by happenstance I'd met a plastic surgeon there who said he could help me. I had been living in London, working temp jobs. While in London, I'd received more nasty comments about my face than I had in the previous three years, living in Iowa, New York, and Germany. These comments, all from men and all odiously sexual, hurt and disoriented me. I also had journeyed to Scotland because after more than a dozen operations in the States my insurance had run out, along with my hope that further operations could make any real difference. Here, however, was a surgeon who had some new techniques, and here, amazingly enough, was a government willing to foot the bill: I didn't feel I could pass up yet another chance to \"fix\" my face, which I confusedly thought concurrent with \"fixing\" my self, my soul, my life.</p></blockquote>",
-          "mentionContext": "<p>One of the perils of being a Proust reader is that you start to see a bit of Proust in everything. In the cadence of the first sentence (<em>There was a long period of time, almost a year</em>…) I can’t help but think of the beginning of <em>In Search of Lost Time</em>, which begins: <em>For a long time, I went to bed early </em>(in Lydia Davis’s translation) or <em>For a long time, I would go to bed early</em> (in the Moncrieff/Kilmartin/Enright translation). But this might just be my reading of it.</p>",
-          "nextContext": "<p>But—if I’m trying to be more objective—what the first sentence does is explain an eccentric behavior: <em>I never looked at my face.</em> The next 2 sentences explain how difficult this was in practice: <em>This wasn’t easy…I began by avoiding mirrors, but by the end of the year I found myself with an acute knowledge of the reflected image</em>. The first paragraph is only 3 sentences long; much of the length comes from the last sentence, which describes the many mirror-like surfaces where Grealy might catch her reflection: <em>a glass tabletop, a well-polished door handle, a darkened window, a pair of sunglasses, a restaurant's otherwise magnificent brass-plated coffee machine sitting innocently by the cash register</em>.</p>",
-          "nearestHeading": "Open with an eccentric personal behavior (Lucy Grealy)"
         }
       ]
     }
