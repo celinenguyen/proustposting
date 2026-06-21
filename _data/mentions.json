@@ -1,6 +1,26 @@
 {
-  "lastScanned": "2026-06-14T12:48:11.714Z",
+  "lastScanned": "2026-06-21T12:48:45.428Z",
   "posts": {
+    "https://www.personalcanon.com/p/im-teaching-2-workshops-this-summer": {
+      "title": "i'm teaching 2 workshops this summer and you're invited",
+      "description": "research, write, make, and reflect with me at ultralight school (NYC) and FWB Fest (Idyllwild, CA)",
+      "imageUrl": "https://substackcdn.com/image/fetch/w_300,h_300,c_fill,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F9a33874e-8ad8-4087-86fc-0ba2fb90ab49_1024x648.jpeg",
+      "url": "https://www.personalcanon.com/p/im-teaching-2-workshops-this-summer",
+      "pubDate": "Sun, 14 Jun 2026 22:42:39 GMT",
+      "lastmod": "2026-06-14",
+      "contentHash": "1f3237cb1afa38ca55bc730da9895b28",
+      "mentions": [
+        {
+          "keywords": [
+            "Proust"
+          ],
+          "prevContext": "<li><p><strong>Daisy Alioto’s “The Taste Economy”</strong> (in <a href=\"https://www.youtube.com/watch?v=lUnYbLoyplo\">video form</a>) at FWB Fest 2024. Alioto is the CEO of Dirt Media, which recently launched a new publishing project, <a href=\"https://lithub.com/introducing-dirt-books-a-publishing-imprint-for-the-22nd-century/\">Dirt Books</a><em>.</em></p></li>",
+          "mentionContext": "<li><p><strong>Charles Broskoski’s “Here for the Wrong Reasons”</strong> (in <a href=\"https://www.are.na/editorial/here-for-the-wrong-reasons\">essay form,</a> in <a href=\"https://www.youtube.com/watch?v=hvxUlGW6EsI\">video form</a>) at FWB Fest 2023. Broskoski is an artist, entrepreneur, and cofounder of Are.na. I also referenced Broskoski’s essay in my Proust newsletter from last spring:</p><div class=\"digest-post-embed\" data-attrs=\"{&quot;nodeId&quot;:&quot;bc100f3a-54a9-4da1-b453-b29f2e524eaa&quot;,&quot;caption&quot;:&quot;In 2022, I decided to spend the year reading Marcel Proust’s In Search of Lost Time. At the time, I knew nothing about Proust:&quot;,&quot;cta&quot;:null,&quot;showBylines&quot;:true,&quot;showDescription&quot;:true,&quot;showImage&quot;:true,&quot;size&quot;:&quot;sm&quot;,&quot;isEditorNode&quot;:true,&quot;title&quot;:&quot;no one told me about proust&quot;,&quot;publishedBylines&quot;:[{&quot;id&quot;:2538585,&quot;name&quot;:&quot;Celine Nguyen&quot;,&quot;bio&quot;:&quot;Designer and writer from California. I write about literature, design, fashion, technology, phenomenology, perfume, and Proust&quot;,&quot;photo_url&quot;:&quot;https://substackcdn.com/image/fetch/$s_!d0r0!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5c59070d-58d7-42e3-abab-c66866275c80_1121x1123.jpeg&quot;,&quot;is_guest&quot;:false,&quot;bestseller_tier&quot;:null}],&quot;post_date&quot;:&quot;2025-05-31T14:37:12.232Z&quot;,&quot;cover_image&quot;:&quot;https://substackcdn.com/image/fetch/$s_!aphd!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F51aa5aff-f89a-4b35-b25c-23d4961cdeaf_3194x3064.png&quot;,&quot;cover_image_alt&quot;:null,&quot;canonical_url&quot;:&quot;https://www.personalcanon.com/p/no-one-told-me-about-proust&quot;,&quot;section_name&quot;:null,&quot;video_upload_id&quot;:null,&quot;id&quot;:157245944,&quot;type&quot;:&quot;newsletter&quot;,&quot;reaction_count&quot;:2276,&quot;comment_count&quot;:158,&quot;publication_id&quot;:2160572,&quot;publication_name&quot;:&quot;personal canon&quot;,&quot;publication_logo_url&quot;:&quot;https://substackcdn.com/image/fetch/$s_!Rroi!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcadd9720-2773-45e3-a01d-336d230c4c9e_512x512.png&quot;,&quot;belowTheFold&quot;:true,&quot;youtube_url&quot;:null,&quot;show_links&quot;:null,&quot;feed_url&quot;:null}\"></div></li>",
+          "nextContext": "<li><p><strong>Toby Shorin’s “Life After Lifestyle” </strong>(in <a href=\"https://subpixel.space/entries/life-after-lifestyle/\">essay form</a>, in <a href=\"https://www.youtube.com/watch?v=iK3oK50AFlg\">video form</a>) at FWB Fest 2022. Shorin is a researcher, writer and technologist who cofounded <a href=\"https://otherinter.net/\">Other Internet</a>.</p></li>",
+          "nearestHeading": null
+        }
+      ]
+    },
     "https://www.personalcanon.com/p/everything-i-read-in-february-march-2026": {
       "title": "everything i read in february & march 2026",
       "description": "and! my Dialectic podcast episode on creative fulfillment and the life of the mind ✦",
@@ -8,7 +28,7 @@
       "url": "https://www.personalcanon.com/p/everything-i-read-in-february-march-2026",
       "pubDate": "Wed, 01 Apr 2026 01:01:23 GMT",
       "lastmod": "2026-04-01",
-      "contentHash": "ef51044966e8c91c59b147b6ce11d821",
+      "contentHash": "9e3355847609f41781e289479671db4a",
       "mentions": [
         {
           "keywords": [
@@ -136,7 +156,7 @@
       "url": "https://www.personalcanon.com/p/everything-i-read-in-january-2026",
       "pubDate": "Sun, 01 Feb 2026 20:55:52 GMT",
       "lastmod": "2026-02-05",
-      "contentHash": "867f7da77a449f16c88398e3f219021f",
+      "contentHash": "07ee60aa2f5f43d89fe519c6379269cb",
       "mentions": [
         {
           "keywords": [
@@ -203,7 +223,7 @@
       "url": "https://www.personalcanon.com/p/weve-created-a-society-where-artists",
       "pubDate": "Wed, 28 Jan 2026 16:02:14 GMT",
       "lastmod": "2026-01-30",
-      "contentHash": "5c72dedbf7b58b41ec314530256ec050",
+      "contentHash": "aa0dcb94226a800e21c0c70a10828050",
       "mentions": [
         {
           "keywords": [
@@ -232,7 +252,7 @@
       "url": "https://www.personalcanon.com/p/best-books-essays-and-poems-of-2025",
       "pubDate": "Wed, 14 Jan 2026 14:03:01 GMT",
       "lastmod": "2026-01-14",
-      "contentHash": "f84a0104e65df6a56419076d4e9be303",
+      "contentHash": "fc49d5a667ab7d40bacfc0d3c0376e2c",
       "mentions": [
         {
           "keywords": [
@@ -262,7 +282,7 @@
       "url": "https://www.personalcanon.com/p/writing-is-an-inherently-dignified",
       "pubDate": "Mon, 29 Dec 2025 07:43:48 GMT",
       "lastmod": "2025-12-29",
-      "contentHash": "0bf3cc533c3490262774d516949c527f",
+      "contentHash": "b5d09da9de43a09d6635d7c4b3c34976",
       "mentions": [
         {
           "keywords": [
@@ -301,7 +321,7 @@
       "url": "https://www.personalcanon.com/p/everything-i-read-in-october-and",
       "pubDate": "Wed, 03 Dec 2025 23:24:01 GMT",
       "lastmod": "2025-12-06",
-      "contentHash": "91119f8eef4cb357b2bf059882c4a9df",
+      "contentHash": "0b9fa0745b09279b23792162da50f413",
       "mentions": [
         {
           "keywords": [
@@ -339,7 +359,7 @@
       "url": "https://www.personalcanon.com/p/ten-thousand-takes-on-tech-culture",
       "pubDate": "Tue, 18 Nov 2025 22:17:02 GMT",
       "lastmod": "2025-11-23",
-      "contentHash": "3ad4b458ce85e50133e8a0c50547f70f",
+      "contentHash": "7f00baa4aad1da00886071e46820c710",
       "mentions": [
         {
           "keywords": [
@@ -359,7 +379,7 @@
       "url": "https://www.personalcanon.com/p/everything-i-read-in-june-2025",
       "pubDate": "Wed, 02 Jul 2025 00:30:39 GMT",
       "lastmod": "2025-07-02",
-      "contentHash": "5a4adbff59f4f2d097dd3edacbc16653",
+      "contentHash": "597db0d575c241b7efe10ad8fb645051",
       "mentions": [
         {
           "keywords": [
@@ -379,7 +399,7 @@
       "url": "https://www.personalcanon.com/p/annie-ernaux-fixed-my-disintegrating",
       "pubDate": "Sun, 22 Jun 2025 17:43:52 GMT",
       "lastmod": "2025-06-22",
-      "contentHash": "b3d76355e07eb6e9dc3a8926e16439b1",
+      "contentHash": "652c87c3532cfbbc6e3dbab8f1b8115d",
       "mentions": [
         {
           "keywords": [
@@ -399,7 +419,7 @@
       "url": "https://www.personalcanon.com/p/no-one-told-me-about-proust",
       "pubDate": "Sat, 31 May 2025 14:37:12 GMT",
       "lastmod": "2025-05-31",
-      "contentHash": "fe61a1433b099b68ea0fd002fb39adc4",
+      "contentHash": "64e035e3fa6f320fa6b9bb7fb7a93fd4",
       "mentions": [
         {
           "keywords": [
