@@ -1,5 +1,5 @@
 {
-  "lastScanned": "2026-08-09T12:12:06.961Z",
+  "lastScanned": "2026-08-16T12:07:42.790Z",
   "posts": {
     "https://www.personalcanon.com/p/im-teaching-2-workshops-this-summer": {
       "title": "i'm teaching 2 workshops this summer and you're invited",
@@ -28,7 +28,7 @@
       "url": "https://www.personalcanon.com/p/everything-i-read-in-february-march-2026",
       "pubDate": "Wed, 01 Apr 2026 01:01:23 GMT",
       "lastmod": "2026-04-01",
-      "contentHash": "c885569e9c2b783a789b776ba77ec7ea",
+      "contentHash": "177e4e9423bfa752528e1dbd3e536105",
       "mentions": [
         {
           "keywords": [
@@ -223,7 +223,7 @@
       "url": "https://www.personalcanon.com/p/weve-created-a-society-where-artists",
       "pubDate": "Wed, 28 Jan 2026 16:02:14 GMT",
       "lastmod": "2026-01-30",
-      "contentHash": "c19ec7d7bf23a877820cb1ad9c2be94d",
+      "contentHash": "991add22ed88e15261d784a8db0e99f1",
       "mentions": [
         {
           "keywords": [
@@ -282,7 +282,7 @@
       "url": "https://www.personalcanon.com/p/writing-is-an-inherently-dignified",
       "pubDate": "Mon, 29 Dec 2025 07:43:48 GMT",
       "lastmod": "2025-12-29",
-      "contentHash": "12e05399b11a11a3a73105701a064bf5",
+      "contentHash": "136801c0170d6178fbfa94a942368d34",
       "mentions": [
         {
           "keywords": [
@@ -717,45 +717,6 @@
           "prevContext": null,
           "mentionContext": "<p>Reply to this email and I’ll tell you my favorite Proust passage to read before <em>(a)</em> a psychedelic trip in nature, and <em>(b)</em> going to a gay/queer rave.</p>",
           "nextContext": null,
-          "nearestHeading": null
-        }
-      ]
-    },
-    "https://www.personalcanon.com/p/everything-i-read-in-february-2025": {
-      "title": "everything i read in february 2025",
-      "description": "3 novels and 2 films on love, despair, and loss ✦ and how to read Hannah Arendt for the first time",
-      "imageUrl": "https://substackcdn.com/image/fetch/w_300,h_300,c_fill,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F762bf4b4-f106-4950-9d99-4732d9cd2c55_2400x2256.png",
-      "url": "https://www.personalcanon.com/p/everything-i-read-in-february-2025",
-      "pubDate": "Tue, 11 Mar 2025 14:02:35 GMT",
-      "lastmod": "2025-03-11",
-      "contentHash": "a7262eaba01dc62270c2bb8e488f9e8a",
-      "mentions": [
-        {
-          "keywords": [
-            "Proust",
-            "In Search of Lost Time"
-          ],
-          "prevContext": null,
-          "mentionContext": "<p>The second film was <strong>Chantal Akerman’s </strong><em><strong>La Captive </strong></em><strong>(2000)</strong>, a film adaptation of the fifth volume of Proust’s <em>In Search of Lost Time</em>. This was a difficult film for me! I love Proust (and probably mention him in every newsletter I send), and I’m very drawn to Akerman’s work…but this was my least favorite volume of Proust’s novel! Unfortunately, this meant that <em>La Captive</em>, which depicts the protagonist and his love interest (Albertine in the novel, Ariane in the film) in a claustrophobically paranoid relationship, was just—not fun. Akerman perfectly captures how it felt to read <em>The Prisoner</em>, with its agonizing, repetitive depiction of a love affair getting worse and worse.</p>",
-          "nextContext": "<p>But here’s what I did love: the opening scenes and the very charming dialogue; the color palette of the film (just consistently extraordinary); the realization that I have a <em>very</em> specific image of some of the characters of <em>In Search of Lost Time</em> and the mannerisms I expect from them. (The actress playing Ariane/Albertine was much more timid than I imagined she would be!)</p>",
-          "nearestHeading": "Films"
-        },
-        {
-          "keywords": [
-            "In Search of Lost Time"
-          ],
-          "prevContext": "<p>The second film was <strong>Chantal Akerman’s </strong><em><strong>La Captive </strong></em><strong>(2000)</strong>, a film adaptation of the fifth volume of Proust’s <em>In Search of Lost Time</em>. This was a difficult film for me! I love Proust (and probably mention him in every newsletter I send), and I’m very drawn to Akerman’s work…but this was my least favorite volume of Proust’s novel! Unfortunately, this meant that <em>La Captive</em>, which depicts the protagonist and his love interest (Albertine in the novel, Ariane in the film) in a claustrophobically paranoid relationship, was just—not fun. Akerman perfectly captures how it felt to read <em>The Prisoner</em>, with its agonizing, repetitive depiction of a love affair getting worse and worse.</p>",
-          "mentionContext": "<p>But here’s what I did love: the opening scenes and the very charming dialogue; the color palette of the film (just consistently extraordinary); the realization that I have a <em>very</em> specific image of some of the characters of <em>In Search of Lost Time</em> and the mannerisms I expect from them. (The actress playing Ariane/Albertine was much more timid than I imagined she would be!)</p>",
-          "nextContext": "<h2>Articles</h2>",
-          "nearestHeading": "Films"
-        },
-        {
-          "keywords": [
-            "Proust"
-          ],
-          "prevContext": "<p><em><strong>On painting</strong></em>. A recent <a href=\"https://www.notebook.bdmcclay.com/p/so-elegant-so-intelligent\">newsletter</a> from the critic and essayist <a href=\"https://substack.com/@BDM\" class=\"user-mention\">@BDM</a> convinced me to change my phone background to a Florine Stettheimer painting. (The monied buy her paintings from <a href=\"https://www.christies.com/en/lot/lot-6477517\">Christie’s</a>; the rest of us admire them in museums or on our screens). Here’s a lovely essay from Adam Gopnick about the “<a href=\"https://www.newyorker.com/magazine/2022/02/28/florine-stettheimer-artist-book-review-barbara-bloemink\">luxury and ecstasy</a>” of Stettheimer’s seemingly ingenuous paintings:</p>",
-          "mentionContext": "<blockquote><p>Stettheimer’s deliberate simplification of drawing, her repetitive figure style, and her relentlessly additive, crowded compositions can at first evoke “outsider art.” <strong>But there are two types of outsider art, one made from below and one from above</strong>. There is the outsider who is, at first, indifferent to the possibility that money might be made from art, and then <strong>there is the outsider who needs to make no money from her art…Stettheimer, like Proust, her beloved literary hero, enjoyed the detachment provided by wealth</strong>, the luxury—shared by Edith Wharton, Gerald Murphy, and Cole Porter—of making what she wanted.</p></blockquote>",
-          "nextContext": "<p>If you want to read more about Stettheimer, I also loved Johanna Fateman’s <a href=\"https://4columns.org/fateman-johanna/florine-stettheimer-a-biography\">review of a Stettheimer biography</a> for <em>4Columns.</em></p>",
           "nearestHeading": null
         }
       ]
